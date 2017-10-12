@@ -1,0 +1,16 @@
+StatKingCityUnion:
+	statLogType	=			39
+	
+	s1			=			unionName
+	s2			=			createrPlayername
+	
+	s3			=			memberName
+	n2			=			becomeKingCityMillis
+	n3			=			professionId
+	n4			=			level
+	n5			=			fightValue
+	n6			=			unionOfficialId
+	n7			=			enterTime
+	
+			
+	

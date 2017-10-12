@@ -1,0 +1,7 @@
+
+C2G_Debug_Event	=	2001	// 调试请求
+	command		=	string	// 空格隔开的参数
+	
+G2C_Debug_Event =	2002	// 调试返回
+	command		=	string	// 空格隔开的参数
+	result		=	string	// 返回结果	

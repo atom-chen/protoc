@@ -1,0 +1,6 @@
+StatDigs	
+statLogType	=			31
+n1			=			int	count				// 剩余vip次数
+s1			=			string	itemRefId		//抽奖所获得的物品refId
+
+						

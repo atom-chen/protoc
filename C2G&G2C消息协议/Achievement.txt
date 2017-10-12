@@ -1,0 +1,39 @@
+﻿Achievement_Message_Begin = 2400
+
+C2G_Achievement_List	=	Achievement_Message_Begin+1
+G2C_AchievementID_List  =	Achievement_Message_Begin+2
+	short 				=	count	//已经获得的成就的数量
+	{
+		string  		=	refId	//成就ID
+		byte 			=	getReward//是否领取奖励
+	}
+			 		
+C2G_Achievement_GetReward =	Achievement_Message_Begin+3
+			string  	=	refId		//成就ID 
+G2C_Achievement_GetReward =	Achievement_Message_Begin+4
+			string 		  =	refId	//成就ID
+			byte  		  = success  //领取奖励是否成功
+			
+
+G2C_Achievement_Get		=	Achievement_Message_Begin+5
+			string 		=	refId 获得成就的ID
+		
+C2G_Achievement_ExchangeMedal	Achievement_Message_Begin+6			
+G2C_Achievement_ExchangeMedal	Achievement_Message_Begin+7
+
+
+
+C2G_Achievement_LevlUpMedal	= Achievement_Message_Begin+8
+			byte 			= position		//0  代表在穿在身上  1  代表在背包里  
+			String 			= refId	    	//玩家当前勋章的refId 
+G2C_Achievement_LevlUpMedal	= Achievement_Message_Begin+9
+			String 			= refId			//升级后的勋章refId
+
+C2G_Achievement_GetAllReward	Achievement_Message_Begin+10;
+
+			
+			
+			
+			
+			
+			

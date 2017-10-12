@@ -1,0 +1,11 @@
+StatGameInstance			副本Stat日志
+	StatType	= 			21
+	n1			=			optType;
+							1:Enter  进入副本
+							2:Finish  完成副本
+							3:NextLayer  进入下一层
+							4:Leave  离开副本
+
+	s1			=			gameInstanceRefId  副本RefId   
+					
+	s2			=			gameInstanceSceneId  副本场景Id

@@ -1,0 +1,58 @@
+
+/**      所有切面任务的消息在这里定义，但是占用原有功能的消息位。
+
+
+C2G_SectionQuest_Begin    	= 		2650; 					// 切面任务走同一个入口，占用翅膀任务的一个消息位
+
+
+//-----------------------------------------------------------------------------------------------------------
+//  翅膀任务
+
+Wing_Message_Begin 			= 		2600;   				// 翅膀的消息的起始
+
+G2C_Wing_WingQuestResp		=		Wing_Message_Begin+5;   // 翅膀任务返回
+	Level  = int  爵位等级
+	
+C2G_Wing_GetWingQuestReward =		Wing_Message_Begin+6;   // 翅膀任务奖励领取
+
+G2C_Wing_GetWingQuestReward = 		Wing_Message_Begin+7;   // 领取翅膀任务奖励返回
+	Result = int  返回是否成功
+
+G2C_Wing_WingQuestAccept	=		Wing_Message_Begin+8    // 翅膀任务接受
+
+
+//-----------------------------------------------------------------------------------------------------------
+//  坐骑任务
+
+Mount_Message_Begin			= 		1100;   				// 坐骑的消息的起始
+
+G2C_Mount_MountQuestResp		=		Mount_Message_Begin+5;   // 坐骑任务返回
+	second  =  int  剩余时间（秒）
+	
+C2G_Mount_GetMountQuestReward =		Mount_Message_Begin+6;   // 坐骑任务奖励领取
+
+G2C_Mount_GetMountQuestReward = 		Mount_Message_Begin+7;   // 领取坐骑任务奖励返回
+	Result = int  返回是否成功
+
+
+
+//-----------------------------------------------------------------------------------------------------------
+//  法宝任务
+
+Talisman_Message_Begin		=		2700					// 法宝的消息的起始
+
+G2C_Talisman_QuestAccept	=		Talisman_Message_Begin+5    // 法宝任务接受
+	type	  byte  (1：翅膀            2：坐骑)
+
+G2C_Talisman_QuestResp		=		Talisman_Message_Begin+6;   // 法宝任务返回
+	type	  byte  (1：翅膀            2：坐骑)
+	Level  =  int   等级
+	
+C2G_Talisman_GetQuestReward =		Talisman_Message_Begin+7;   // 法宝任务奖励领取
+	type	  byte  (1：翅膀            2：坐骑)
+
+G2C_Talisman_GetQuestReward = 		Talisman_Message_Begin+8;   // 领取法宝任务奖励返回
+	type	  byte  (1：翅膀            2：坐骑)
+	Result = int  返回是否成功
+
+

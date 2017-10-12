@@ -1,0 +1,68 @@
+
+G2C_Player_Attribute	=	501		// 玩家属性
+	propertyLength		=	int		// 属性字典长度
+	propertyDictionary	=	pd		// 属性字典
+	
+C2G_Player_LeaveWorld	=	503		// 玩家离开游戏
+	charId				=	string	// 角色ID
+ResultEvent				=	503		// 错误返回
+	0x80000008			=	找不到角色
+
+C2G_Player_Revive		=	511		// 复活请求
+	reviveType			=	byte	// 符号类型(0:回城复活 1:元宝复活 2:法宝复活)
+G2C_Player_Revive			512		// 复活返回
+
+
+C2G_Player_Heartbeat	=	513		// 心跳请求
+G2C_Player_Heartbeat	=	514		// 心跳返回
+	flag				=	byte	// 无用，客户端解码有问题，不能解空包
+	
+C2G_Player_KillerInfo	=	515		// 获取击杀者信息 (玩家死亡，则发送此消息)
+G2C_Player_KillerInfo	=	516		// 返回击杀者信息 
+	killerCharId		=	string	// 击杀者
+	killerName			=	string	// 击杀者名称
+	killerType			=	byte	// 击杀者类型 (无类型:0 怪物:1 玩家:2)
+	killerLevel			=	int		// 击杀者等级
+	killerOccupa		=	byte	// 击杀者职业(1:战士 2:法师 3:道士)
+	killerFightPower	=	int		// 击杀者战力
+	deadTime			=	long	// 死亡时间(击杀时间)(根据这个时间来算原地复活倒计时剩余时间)
+	count				=	byte	// 掉落个数
+	{
+		itemRefId		=	string	// 物品refId
+		count			=	int		// 物品掉落个数
+	}
+
+	
+C2G_OtherPlayer_EquipList	= 521		// 玩家列表
+	charId				=	String		//玩家唯一id
+G2C_OtherPlayer_EquipList	= 522		//列表返回	
+	charId				=	String		//玩家唯一id
+	count 				        = short				            //装备的数量，接下来为各个物品的数据段
+    {       
+    	id						= string						//装备的唯一标示id                
+        bodyId                  = byte                          //穿戴部位id
+		posIndex		        = byte						    //在穿戴部位的位置，从0开始
+        refId                   = string                        //装备的refId  
+        pdCount                 = byte                          //属性字典的数量
+        {                                      
+            which           =byte                               //属性字典的类型：1 总属性， 2 洗练属性
+            dataLenght     	= int	                            //属性字典长度
+            PropertyDictionary						            //物品的属性字典
+        }
+    }
+ 
+ C2G_OtherPlayer_Attribute	= 523	//请求其他玩家属性
+ 	charId					= string //玩家唯一的标识
+ G2C_OtherPlayer_Attribute	= 524	//其他玩家属性
+ 	charId				=	String	//玩家唯一标识
+ 	propertyLength		=	int		// 属性字典长度
+	propertyDictionary	=	pd		// 属性字典
+	
+
+ C2G_OtherPlayer_Simple_Attribute = 525	//请求其他玩家简单属性
+ 	charId					= string //玩家唯一的标识
+ G2C_OtherPlayer_Simple_Attribute = 526	//返回其他玩家简单属性
+ 	charId				=	string
+ 	hp					=	int		//当前玩家血量
+ 	maxHp				=	int		//当前玩家最大血量
+

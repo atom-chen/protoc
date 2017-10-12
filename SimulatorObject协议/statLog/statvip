@@ -1,0 +1,4 @@
+StatVip		=		VIP
+statLogType	=			26
+n1			=			byte	optType					//操作类型  1 = VIP过期，取消VIP， 2 = 升级为VIP
+n2			=			byte	vipLevel				//当前VIP级别

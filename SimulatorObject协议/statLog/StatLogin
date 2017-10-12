@@ -1,0 +1,5 @@
+StatLogin = 2			玩家登录日志
+
+n1		  =			loginTimes				//玩家登陆次数
+n2		  =			loginDays				//玩家登陆天数
+n3		  =			lastLoginTime			//玩家最近登录时间

@@ -1,0 +1,129 @@
+﻿-------玩家的所有技能-------
+C2G_GetLearnedSkillList = 401
+
+G2C_GetLearnedSkillList = 402
+skillsSize	short		//已习得技能的总数量		
+{
+	refId	String	//技能refId
+	level  int		//技能等级
+	exp		int 	//技能熟练度
+	shortcutIndex	byte	//快捷技能槽位置，如不是快捷技能,填-1
+}
+
+-------玩家放置快捷技能-------
+C2G_PutdownSkill = 403
+skillRefId	String	
+index		short	//技能槽index
+			//备注: 
+				放置,取消放置,替换放置,交换放置都共用本消息.
+				取消放置时 index 填 -1;
+ResultEvent = 99
+略
+
+C2G_AddSkillExp = 405
+skillRefId String
+
+G2C_AddSkillExp = 406
+skillRefId String
+currentSkillExp int
+currentSkillLevel int
+
+ResultEvent = 99
+略
+
+--------玩家使用技能
+C2G_UseSkill = 410
+skillRefId		String		技能引用编号
+useTime			long 		技能CD开始时间（服务端参考值）
+dstType			byte		0-精灵，1-坐标, 2-朝向
+// 0 -- 精灵
+{
+	targetType		String		"Monster", "Player"
+	targetId		String		目标编号
+}
+// 1 -- 坐标
+{
+	targetX		int		X坐标
+	targetY	  int		Y坐标
+}
+// 2 --朝向
+{
+	direction	byte	//方向
+}
+
+ResultEvent = 99
+可能会返回的code
+CODE_SKILL_BEGIN = 300;
+CODE_SKILL_NOT_LEARNED = addCode(CODE_SKILL_BEGIN + 1, "技能未学习");
+CODE_SKILL_IN_CD = addCode(CODE_SKILL_BEGIN + 2, "技能CD中");
+CODE_SKILL_TARGET_NULL = addCode(CODE_SKILL_BEGIN + 3, "技能目标为空");
+CODE_SKILL_NOT_ENOUGH_MP = addCode(CODE_SKILL_BEGIN + 4, "技能所需魔法不够");
+CODE_SKILL_DATA_LOGIC_ERROR = addCode(CODE_SKILL_BEGIN + 5, "技能数据逻辑错误");
+CODE_SKILL_TARGET_TOO_FAR = addCode(CODE_SKILL_BEGIN + 6, "技能不在施法距离之内");
+CODE_SKILL_TARGET_DEAD = addCode(CODE_SKILL_BEGIN + 7, "技能作用目标已经死亡");
+CODE_SKILL_ATTACKER_DEAD = addCode(CODE_SKILL_BEGIN + 8, "技能发起者已经死亡");
+
+-------触发单目标的技能-------
+G2C_TriggerSingleTargetSkill = 412
+
+skillRefId		string		    //技能引用编号
+attackerType	String			//"Monster", "Player"
+atktackerId		String			//出手id
+attackerX	short 	//施法者施法时的X坐标
+attackerY	short 	//施法者施法时的Y坐标
+targetType		String			//"Monster", "Player"
+targetId		String			//目标id
+targetX		short		//目标被攻击时的X坐标
+targetY		short 	//目标被攻击时的Y坐标
+effectCount  	int				//效果列表
+[
+	{ 
+		who					byte			//0:attacker		1:target
+		effectType	byte	//0:miss 1:hp 2:暴击 3：死 4:幸运 5:瞬移 6 加血 7 持续时间(火墙) 8 召唤怪
+		effectParams	//根据effectType来解析的参数
+		{
+				NONE		// 这几项没有: 					0:miss 3:死亡 4:幸运
+				int	 		// 这几项是一个int:				7 持续时间(火墙)
+				short|short|short|short			// 这几项是四个int:				5,前两个short是受击者施法时的x, y坐标，后面两个short是受击者施法后的x,y坐标
+				int|int|int		// 这几项是两个int:			1， hp 2,暴击  6：加血   (第一个值时伤害值，第二个是当前值，第三个是最大值)
+				int|String...	     //第一个int是后面怪物id的个数|多个怪物id		8 召唤怪(火墙，召唤骷髅，神兽)
+				
+		}
+	}
+	{ ...}
+]
+
+-------触发范围目标的技能-------
+G2C_TriggerMultiTargetSkill = 414
+
+skillRefId		string		//技能引用编号
+attackerType				String			//"Monster", "Player"
+attackerId					String				//出手id
+dstType						byte			//1-坐标, 2-朝向
+{
+	targetX
+	targetY
+}
+{
+	direction
+}	
+targetCount		int				//目标个数
+[
+	{
+		targetType				String			//"Monster", "Player"
+		targetId					String				//目标id
+		effectCount  	int				//效果列表
+		[
+			{
+				who					byte			//
+				effectType	byte			//
+				effectParams	String	//
+			}
+			{ ... }
+		]
+	}
+	{ ... }
+]
+
+
+

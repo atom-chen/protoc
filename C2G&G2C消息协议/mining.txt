@@ -1,0 +1,49 @@
+======================挖矿活动协议===================
+Mining_Message_Begin = 4400;
+
+C2G_Mining_EnterEvent     =   Mining_Message_Begin  + 1  //请求进入挖矿活动
+G2C_Mining_EnterEvent     =   Mining_Message_Begin  + 2   //响应进入挖矿活动
+	isEnter             =   byte                //是否可以进入    0=可以进入       1=不能进入
+		// isEnter == 0
+	｛	
+		leaveTime			=	long				//剩余时间
+		count               =   byte				//已经采集次数
+		
+		typeCount				=	byte				//矿物类型数量
+		{
+			pluckType		=	byte				//矿物类型
+			collectedCount	=	byte				//已采集数量
+		}
+	｝
+	
+		// isEnter == 1
+		nextTimeString
+	
+	
+	
+C2G_Mining_ExitEvent      =   Mining_Message_Begin  + 3   //请求退出挖矿活动
+G2C_Mining_ExitEvent      =   Mining_Message_Begin  + 4   //响应退出挖矿活动
+G2C_Mining_FinishEvent    =   Mining_Message_Begin  + 5   //挖矿活动时间到，通知客户端活动结束
+
+G2C_Mining_Update	=	Mining_Message_Begin  + 6   //挖矿进度更新
+	count               =   byte				//已经采集次数
+	typeCount				=	byte				//矿物类型数量
+		{
+			pluckType		=	byte				//矿物类型
+			collectedCount	=	byte				//已采集数量
+		}
+G2C_Mining_Open     =   Mining_Message_Begin  + 7   //挖矿活动是否开启通知
+    isOpen          =   byte                           //0表示已经开启，1表示未开启
+C2G_Mining_Open     =   Mining_Message_Begin  + 8   //挖矿活动是否开启请求
+
+G2C_Mining_ContinuTime = Mining_Message_Begin + 9,
+	timeToStart =	long	//距离活动开始实际
+	timeToEnd 	=	long	//距离活动结束时间
+C2G_Mining_ContinuTime = Mining_Message_Begin + 10,
+
+C2G_Mining_RemainRrfreshTime = Mining_Message_Begin + 11,
+	MiningType	=	byte	//矿石类型	1=低级矿 2=中级矿 3=高级矿
+G2C_Mining_RemainRrfreshTime = Mining_Message_Begin + 12,
+	MiningType				=	byte	//矿石类型	1=低级矿 2=中级矿 3=高级矿
+	remainRefreshSeconds	=	int		//剩余刷新时间 (0表示存在已经刷好的矿石)	
+

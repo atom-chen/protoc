@@ -1,0 +1,42 @@
+﻿Vip_Message_Begin = 1700
+
+C2G_Vip_Message    = Vip_Message_Begin  + 1
+G2C_Vip_Message    = Vip_Message_Begin  + 2
+	charId		= string //玩家ID
+	vip			= byte		//vip 类型     0 = 非VIP ，1=青铜VIP，2=白银VIP，3=黄金VIP
+	day			= int		//剩余天数
+C2G_Vip_RewardList	   = Vip_Message_Begin + 3
+
+G2C_Vip_RewardList	   = Vip_Message_Begin + 4
+	expMultiple		= byte //0 = 否  1=是
+	gift			= byte 
+	level			= byte 
+
+C2G_Vip_GetReward		= Vip_Message_Begin + 5
+	type			= byte //1 = 领取经验倍数，2=领取礼包 3=领取武器 4= 一件领取
+G2C_Vip_GetReward		= Vip_Message_Begin + 6
+
+C2G_Vip_OpenLottery		= Vip_Message_Begin + 7
+	
+G2C_Vip_OpenLottery		= Vip_Message_Begin + 8	
+	vipType			= byte// 1 = 青铜，2 = 白银，3 = 黄金 0= 非
+	tomCount		= int // 明天可抽奖次数
+	todayCount		= int // 今天可抽奖次数	
+	
+	{
+	   index		= byte
+	   itemRefId	= string
+	}
+
+C2G_Vip_Lottery		= Vip_Message_Begin + 9
+	lotteryType		= byte	//VIP抽奖类型 0=普通抽奖 1=VIP全部抽取
+	
+G2C_Vip_Lottery		= Vip_Message_Begin + 10
+	index		    = byte // 中奖位置	 -1 = 抽取全部de返回
+	
+G2C_Vip_LotteryMsg	= Vip_Message_Begin + 11
+	msg				= string //中奖信息广播
+	
+G2C_Vip_SendWing	= Vip_Message_Begin + 12
+	wingLevel	= byte //翅膀等级
+C2C_Vip_GetWing	= Vip_Message_Begin + 13

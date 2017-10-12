@@ -1,0 +1,24 @@
+﻿Pk_Message_Begin = 3000
+
+C2G_Pk_Model	= Pk_Message_Begin +1
+	model		= short	
+
+----------- state ------------
+和平 = 3
+组队 = 4
+公会 = 5
+善恶 = 6
+全体 = 7
+G2C_Pk_Model	= Pk_Message_Begin +2
+	ret			= byte //0 = 失败,1 = 成功
+G2C_Name_Color	= Pk_Message_Begin +3	// 名称颜色
+	charId		= string //玩家ID
+	color	        = short  // 0 = 白色 ， 1 = 黄色 ，2 =红色 ， 3 = 灰色
+C2G_Name_Color	= Pk_Message_Begin +4
+
+G2C_Rookie_Protection = Pk_Message_Begin + 6
+	attackerId 	  = string
+	targetId	  = string
+	attackerLevel = int32
+	targetLevel   = int32
+

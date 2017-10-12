@@ -1,0 +1,10 @@
+
+C2G_Monster_OwnerTransfer = 1701
+monsterId String
+
+//怪物拥有者改变
+G2C_Monster_OwnerTransfer = 1702
+monsterId String
+ownerId String
+-------------------
+CODE_MONSTER_NULL = 1801;

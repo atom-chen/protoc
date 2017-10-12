@@ -1,0 +1,209 @@
+	Team_Message_Begin = 1600;;  // 组队消息起始
+	//-----------------------------------------------------------------------------------
+
+----------玩家信息--------------------------------
+	// 玩家信息请求
+	 C2G_PlayerInfoActionEvent = MMORPGEventDefines.Team_Message_Begin + 1;
+	 String playerId     //玩家ID
+	// 玩家信息返还
+	 G2C_PlayerInfoActionEvent = MMORPGEventDefines.Team_Message_Begin + 51; 
+	 byte playerTeamStateType // 1:其他队2:已经是你的的队员3:未组队
+
+	
+----------组队邀请（队长）--------------------------------
+	// 发起组队邀请请求
+	C2G_AssembleTeamActionEvent = MMORPGEventDefines.Team_Message_Begin + 2;
+	String invitedPlayerId; //邀请目标ID
+	
+		// 发起组队邀请返回————> 邀请者
+	G2C_AssembleTeamActionEvent = MMORPGEventDefines.Team_Message_Begin + 52; // 向目标玩家发送组队界面
+	String invitedPlayerId; //邀请目标ID
+	String invitedPlayerName; //邀请目标姓名
+	int    invitedPlayerLevel;//邀请目标等级
+	
+	
+----------组队邀请（队员）--------------------------------
+	// 组队邀请通知
+	 C2G_JoinTeamActionEvent = MMORPGEventDefines.Team_Message_Begin + 3;
+	 String invitedPlayerId    // 邀请目标
+	 byte  replyJoinTeamType   //1:放弃（玩家30秒没有响应）,2: 通过加入队伍 3:拒绝加入队伍
+
+	// 组队邀请返回
+	G2C_JoinTeamActionEvent = MMORPGEventDefines.Team_Message_Begin + 53;//
+	byte playerActionType     //1:放弃（玩家30秒没有响应）,2: 通过加入队伍 3:拒绝加入队伍
+
+	
+-----------离开队伍-------------------------------
+	// 离开队伍请求
+	C2G_LeaveTeamActionEvent = MMORPGEventDefines.Team_Message_Begin + 4;
+	// 离开队伍返还
+	G2C_LeaveTeamActionEvent = MMORPGEventDefines.Team_Message_Begin + 54;
+
+	 
+-----------踢出队伍成员-------------------------------
+	// 踢出队伍成员请求
+	 C2G_KickedOutTeamMemberActionEvent = MMORPGEventDefines.Team_Message_Begin + 5;
+	 String kickdOutPlayerId;
+	// 踢出队伍成员返还
+	 G2C_KickedOutTeamMemberActionEvent = MMORPGEventDefines.Team_Message_Begin + 55;
+
+		
+----------队长转让--------------------------------
+	// 队长转让请求
+	 C2G_HandoverTeamLeaderActionEvent = MMORPGEventDefines.Team_Message_Begin + 6;
+	 String newTeamLeaderPlayerId;
+
+		
+-----------解散队伍-------------------------------
+	// 解散队伍请求
+	 C2G_DisbandTeamActionEvent = MMORPGEventDefines.Team_Message_Begin + 7;
+	// 解散队伍返还
+	 G2C_DisbandTeamActionEvent = MMORPGEventDefines.Team_Message_Begin + 57;
+
+		 
+----------设置是否接受队伍加入邀请--------------------------------
+	// 设置是否接受队伍加入邀请请求
+	 C2G_PlayerTeamSettingActionEvent = MMORPGEventDefines.Team_Message_Begin + 8;
+	 byte acceptedInvite // 是否接受队伍加入邀请 1:接受0：不接受
+	// 设置是否接受队伍加入邀请返还
+	 G2C_PlayerTeamSettingActionEvent = MMORPGEventDefines.Team_Message_Begin + 58;
+
+
+----------队伍建立--------------------------------
+	// 队伍建立请求
+	 C2G_PlayerTeam_Create = MMORPGEventDefines.Team_Message_Begin + 9;
+	  byte levelChoice(1~7:40、45、50、55、60、70、80)
+	 
+	// 队伍建立返回
+	 G2C_PlayerTeam_Create = MMORPGEventDefines.Team_Message_Begin + 59;
+	  byte createSuccee  1:成功  0：失败
+	  String teamId
+	  
+----------申请加入队伍--------------------------------
+	// 申请加入队伍请求
+	 C2G_PlayerTeam_JoinRequest = MMORPGEventDefines.Team_Message_Begin + 10;
+	  String teamId  // 队伍id
+	 
+	// 申请加入队伍返回————> 给队长
+	 G2C_PlayerTeam_JoinRequest = MMORPGEventDefines.Team_Message_Begin + 60;
+	  	String invitedPlayerId; //申请目标ID
+		String invitedPlayerName; //申请目标姓名
+		int    invitedPlayerLevel;//申请目标等级
+
+------------------------------------------
+
+	// 队伍列表及信息请求
+	 C2G_PlayerTeam_InfomationEvent = MMORPGEventDefines.Team_Message_Begin + 11;
+	
+	// 队伍列表及信息返回
+	 G2C_PlayerTeam_InfomationEvent = MMORPGEventDefines.Team_Message_Begin + 61;
+	    String teamLeaderName 队长名字
+	    String teamId
+	    short size:
+	    	String teamLeaderName 队长名字
+	    	String teamId
+	 		byte levelChoice  最低要求等级
+			byte teamMember	  队伍人数
+	  		byte averageLevel  平均等级
+
+	// 组队申请处理 （队长发送给服务器）
+	C2G_JoinRequestReplyActionEvent = MMORPGEventDefines.Team_Message_Begin + 12;
+	 String invitedPlayerId    // 申请目标ID
+	 byte  replyJoinTeamType   //1:放弃（玩家30秒没有响应）,2: 通过加入队伍 3:拒绝加入队伍
+
+	// 组队申请处理返回（服务器发送给申请者）
+	G2C_JoinRequestReplyActionEvent = MMORPGEventDefines.Team_Message_Begin + 62;//
+	byte playerActionType     //1:放弃（玩家30秒没有响应）,2: 通过加入队伍 3:拒绝加入队伍	
+	  
+	  		
+	// 队伍修改请求
+	 C2G_PlayerTeam_Modify = MMORPGEventDefines.Team_Message_Begin + 13;
+	  byte levelChoice(1~7:40、45、50、55、60、70、80)
+	 
+	// 队伍修改返回
+	 G2C_PlayerTeam_Modify = MMORPGEventDefines.Team_Message_Begin + 63;
+	  byte createSuccee   		1 成功  0 失败
+	 
+//请求队员的状态信息
+C2G_TeamMember_Detail = MMORPGEventDefines.Team_Message_Begin + 14;
+// 队伍状态信息返回
+G2C_TeamMember_Detail = MMORPGEventDefines.Team_Message_Begin + 64;
+		byte size  队员数目
+			{
+				byte  state 队员状态   1 在线   2 离线  3 死亡
+				string memberId  队员Id
+				int MaxHp 队员最大血量
+				int Hp   队员当前血量
+				string sceneid //场景id
+				int x;
+				int y;
+		  }
+	  
+	// ======================================================================================================================
+	
+	// 队员进入/队员离开(广播)
+	 G2C_Broadcast_TeamActionEvent = MMORPGEventDefines.Team_Message_Begin + 81;
+	 byte actionType (2:新增,3:减少)
+	 String teamLeaderId;
+	 byte profession
+	 byte gender
+	 String teamLeaderName;
+	 int teamLeaderHP
+	 int HPMax
+	 int teamMembersSize 数量
+	 String teamMemberId;
+	 byte profession
+	 byte gender
+	 String teamMemberName;
+	 int teamMemberHP;(如果玩家血量小于等于0就是死亡状态)
+	 int HPMax;
+	 
+	// 队长转让(广播)
+	 G2C_Broadcast_HandoverTeamActionEvent = MMORPGEventDefines.Team_Message_Begin + 82;
+	 String newTeamLeaderId;
+	 String oldTeamLeaderId;
+	 
+	// 队长离开队伍(广播)
+	 G2C_Broadcast_TeamLeaderQuitTeamActionEvent = MMORPGEventDefines.Team_Message_Begin + 83;
+	 String quitTeamLeaderId;
+	 String newTeamLeaderId;
+	 
+	// 队长解散队伍(广播)
+	 G2C_Broadcast_DisbandTeamActionEvent = MMORPGEventDefines.Team_Message_Begin + 84;
+	 
+	// 队长踢出队员(广播)
+	 G2C_Broadcast_TeamLeaderKickedOutActionEvent = MMORPGEventDefines.Team_Message_Begin + 85;
+	 String kickedOutTeamLeader;
+
+	// ---------------------------------------------------------------------------------
+
+	 G2C_PlayerTeamBoss_PreStart    = MMORPGEventDefines.Team_Message_Begin + 65        //对所有参加公会的玩家预开始通知
+	 	type       =    byte
+ 
+ 	 G2C_PlayerTeamBoss_End		    = MMORPGEventDefines.Team_Message_Begin + 15        //攻城战结束通知（客户端移除状态使用）.....返回对象：参战公会的所有在线成员。
+ 	    type       =    byte
+ 
+ 	 C2G_PlayerTeamBoss_RequestTime = MMORPGEventDefines.Team_Message_Begin + 66    	//请求攻城战时间相关
+ 
+ 	 G2C_PlayerTeamBoss_RequestTime = MMORPGEventDefines.Team_Message_Begin + 67    	//攻城战相关时间返回
+ 		timeToStart =	long	//距离活动开始实际
+ 		timeToEnd 	=	long	//距离活动结束时间
+ 		
+ 	 G2C_PlayerTeamBoss_Start    = MMORPGEventDefines.Team_Message_Begin + 68
+ 	 	type       =    byte
+ 	 	
+ 	 G2C_PlayerTeamBoss_Show	 = MMORPGEventDefines.Team_Message_Begin + 69
+	 
+
+----------------错误码------------------------
+ResultEvent	= 1600~1699	 
+0x80000641=不能对自己操作
+0x80000642=已组队
+0x80000643=加入队伍失败
+0x80000644=踢出队伍失败
+0x80000645=离开队伍失败
+0x80000646=转让队长失败
+0x80000647=解散队伍失败
+0x80000648=邀请失败
+
+	 

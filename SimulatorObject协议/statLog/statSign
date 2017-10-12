@@ -1,0 +1,4 @@
+StatSign
+n1		=		optType			byte	//签到类型	1:正常签到，2，补签
+n2		=		day				byte	//签到的哪一天
+n3		=		count			byte	//本月累计签到次数

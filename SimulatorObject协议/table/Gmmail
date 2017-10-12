@@ -1,0 +1,12 @@
+Gmmail 
+mailId  int      //邮件id
+title   String   //邮件标题
+content String   //邮件内容
+gold    int      //元宝   
+coin    int      //铜币
+item    String   //物品
+time    long     //邮件生成时间
+minlevel  int    //玩家最小等级
+maxlevel  int    //玩家最大等级
+begintime long   //邮件生效时间
+endtime   long   //邮件失效时间

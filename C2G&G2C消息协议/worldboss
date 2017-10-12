@@ -1,0 +1,11 @@
+Boss_Message_Begin = 1800
+C2G_Boss_List = Boss_Message_Begin + 1			//请求怪物刷新列表
+G2C_Boss_List = Boss_Message_Begin + 2
+	count	  = byte
+	{
+		monsterRefId	=	string	//boss refId
+		refreshTime		=	long	// 下一轮刷新倒计时间 0=已刷新
+		
+	}
+G2C_Boss_Refresh = Boss_Message_Begin + 3
+	monsterRefId		=	string	//boss refId

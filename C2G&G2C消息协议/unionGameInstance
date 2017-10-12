@@ -1,0 +1,13 @@
+UnionGameInstance_Message_Begin = 4100
+
+C2G_UnionGameInstance_Apply	=	UnionGameInstance_Message_Begin + 1	
+
+G2C_UnionGameInstance_Apply =   UnionGameInstance_Message_Begin + 2
+				ret			=   byte // failed = 0 success = 1			
+C2G_UnionGameInstance_Enter =	UnionGameInstance_Message_Begin + 3
+
+G2C_UnionGameInstance_Enter =	UnionGameInstance_Message_Begin + 4
+				ret			=   byte // failed = 0 success = 1	
+				isComplete	=	byte // no = 0 yes = 1  是否已经完成击杀指定boss
+G2C_UnionGameInstance_Finish = UnionGameInstance_Message_Begin + 5
+				ret			= 	byte // no = 0 yes = 1  是否已经完成击杀指定boss

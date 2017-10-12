@@ -1,0 +1,15 @@
+StatDigs	
+statLogType	=			30
+n1			=			byte	optType		// 操作类型
+												1:挖宝	, 2:提取物品
+n2			=			int	    count/index	 // 如果 操作类型 = 1， n2 = 挖宝次数 
+											            如果 操作类型 = 2， n2 = 索引位置，如果索引位置n2 = -1 ，那么为全部提取
+											         
+n3			=			long	time		// 如果 操作类型 = 1， n3 = 挖宝时间
+											         如果 操作类型 = 2， n3 = 提取时间
+StatDigItem	
+statLogType	=			32
+s1			=			itemRefId			//道具id
+n1			=			number				//道具数量
+n2			=			time				//挖宝时间
+						

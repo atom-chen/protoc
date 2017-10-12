@@ -1,0 +1,11 @@
+C2G_GetReward	=	3901
+	rewardId = string
+
+
+C2G_CanGetReward	= 3903
+	rewardId = string
+
+G2C_CanGetReward	= 3904
+	count{			= 	byte
+		rewardId	=	string;		
+	}

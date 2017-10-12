@@ -1,0 +1,12 @@
+game_sortboardData:
+id				=				int
+sortboardData	=				byte[]
+
+	sortboardData:
+	scoreDatasSize		=		int
+	{
+		playerId		=		string
+		playerName		=		string
+		profession		=		int
+		score			=		int
+	}

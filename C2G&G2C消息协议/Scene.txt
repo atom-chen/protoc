@@ -1,0 +1,251 @@
+﻿
+===================== 行走  ==============================
+
+// 说明:
+// client有两个时间变量，发送包时间:ct1, 收到包时间:ct2
+// server有一个时间变量，st1
+// 包的往返延迟 = ct2 - ct1, 这个基本没用
+// client与server的时间差 dc = st1 - (ct2 + ct1) / 2
+// client计算实际包的延迟 = ct2 - st1 + dc  
+
+C2G_Scene_Sync_Time		=	301		// 时间同步请求，暂定10s发送一次，服务端根据两个包之间到达时间算出时间差
+	clientStamp			=	long	// client发送时间，时间戳，毫秒数
+G2C_Scene_Sync_Time		=	302		// 时间同步返回
+	clientStamp			=	long	// client发送时间，时间戳，毫秒数
+	serverStamp			=	long	// server发送事件，时间戳，毫秒数
+
+//////////// 此协议废止 //////////////////////////////
+C2G_Scene_Start_Move	=	303		// 开始移动
+	srcX				=	int		// 开始x
+	srcY				=	int		// 开始y
+	dstX				=	int		// 结束x
+	dstY				=	int		// 结束y
+/////////////////////////////////////////////////
+	
+C2G_Scene_Start_Move	=	303		// 开始移动
+	count				=	byte	// 转折点个数，暂定上限为10个
+	{
+		x				=	int		// 坐标x
+		y				=	int		// 坐标y
+	}
+	
+//////////// 此协议暂时无用，已放到AOI通知里 ///////////////	
+G2C_Scene_Start_Move	=	304		// 广播开始移动
+	charId				=	string	// 玩家唯一ID
+	srcX				=	int		// 开始x
+	srcY				=	int		// 开始y
+	dstX				=	int		// 结束x
+	dstY				=	int		// 结束y
+	bgnTime				=	long	// 开始行走时间，服务端时间，时间戳，毫秒数
+//////////////////////////////////////////////////
+	
+C2G_Scene_Stop_Move		=	305		// 打断移动，客户端立马停止行走，并且向服务器发送该协议
+	x					=	int		// 坐标x
+	y					=	int		// 坐标y
+	
+//////////// 此协议暂时无用，已放到AOI通知里 ///////////////	
+G2C_Scene_Stop_Move		=	306		// 广播结束移动
+	charId				= 	string	// 玩家ID
+	x					=	int		// 坐标x
+	y					=	int		// 坐标y
+//////////////////////////////////////////////////
+
+G2C_Scene_MoveSpeed		=	308		// 广播移动速度
+	charId				=	string	// 角色唯一ID
+	type				=	string	// 角色类型(Player, Monster, NPC)
+	speed				=	int		// 角色当前速度，每秒多少个格子
+	
+	
+==================== 场景跳转  =============================
+C2G_Scene_Switch		=	351		// 场景切换
+	switchId			=	int		// 传送点ID
+G2C_Scene_Switch		=	352		// 通知场景切换，客户端收到消息后切换场景
+	sceneId				=	string	// 场景ID
+	x					=	int		// 坐标x
+	y					=	int		// 坐标y
+	
+
+C2G_Scene_Ready			=	353		// 切换场景完成，客户端ready，服务端才可以发送AOI信息过去
+G2C_Scene_Ready			=	354		// 切换场景完成确认
+	value				=	byte	// 没有实际用处，只是为了给客户端解包需要	
+
+C2G_Scene_Transfer		=	355		// 传送
+	type				=   byte	//1=飞鞋 ,2=普通传送
+	sceneId				=	string	// 场景ID
+	x					=	int		// 坐标x
+	y					=	int		// 坐标y			
+	
+==================== AOI =============================
+G2C_Scene_AOI			=	372		// 场景AOI信息
+	removeCount			=	short	// 移除个数
+	{
+		charId			=	string	// 玩家ID|怪物ID|...
+		type			=	string	// 角色类型(Player, Monster, NPC)
+	}
+	playerCount			=	short	// 玩家个数
+	{
+		charId			=	string	// 玩家唯一ID
+		name			=	string	// 玩家名称
+		profession		=	byte	// 玩家职业
+		level			=	int		// 等级
+		gender			=	byte	// 性别
+		hp				=	int		// 当前血量
+		hpMax			=	int		// 当前血量上限
+		x				=	int		// 坐标x
+		y				=	int		// 坐标y
+		speed			=	int		// 移动速度
+		weaponId		=	int		// 武器ID, 0表示没有
+		armorId			=	int		// 铠甲ID, 0表示没有
+		wingId			=	int		// 翅膀ID, 0表示没有
+		mountId			=	int		// 坐骑ID, 0表示没有
+		knightLevel		=	byte	// 爵位等级
+		unionName		=	string	// 公会名称
+		isKingCity		=	byte	// 0:不是王城公会成员,1:王城公会成员
+		isPlucking		=	byte	// 是否在采集
+		stateCount		=	short	// 状态个数
+		{
+			id			=	short	// 状态ID
+		}
+		propertyLength	=	int		// 属性字典长度
+		propertyDictionary	=	pd		// 玩家场景外观属性pd
+	}
+	monsterCount		=	short	// 怪物个数
+	{
+		monsterId		=	string	// 怪物ID
+		monsterRefId	=	string	// 怪物Ref ID
+		x				=	int		// 坐标x
+		y				=	int		// 坐标y
+		hp				=	int		// 当前血量
+		hpMax			=	int		// 当前血量上限
+		speed			=	int		// 移动速度
+		stateCount		=	short	// 状态个数
+		{
+			id			=	short	// 状态ID
+		}
+		playerId		= 	string  // 所属玩家ID
+	}	
+	lootCount			=	short	// 掉落个数
+	{
+		lootId			=	string	// 掉落物ID
+		lootRefId		=	string	// 掉落Ref ID
+		x				=	int		// 坐标x
+		y				=	int		// 坐标y
+		isMine			=	byte	// 是否是自己的(0:不是 1:是)
+		leftGuardTime	=	int		// 剩余保护时间(单位秒)
+	}	
+	pluckCount			=	short	// 采集个数
+	{
+		pluckId			=	string	// 采集物ID
+		pluckRefId		=	string	// 采集Ref ID
+		x				=	int		// 坐标x
+		y				=	int		// 坐标y
+	}
+	moveCount			=	short	// 行走个数
+	{
+		charId			=	string	// 玩家ID|怪物ID|...
+		type			=	string	// 角色类型(Player, Monster, NPC)
+		serverStamp		=	long	// AOI发送时间，服务端时间，时间戳，毫秒数
+		srcX			=	int		// 开始x
+		srcY			=	int		// 开始y
+		dstX			=	int		// 结束x
+		dstY			=	int		// 结束y
+	}
+	stopMoveCount		=	short	// 打断移动
+	{
+		charId			=	string	// 玩家ID|怪物ID|...
+		type			=	string	// 角色类型(Player, Monster)
+		x				=	int		// 停止坐标x
+		y				=	int		// 停止坐标y
+	}
+	jumpToCount			=	short	// 跳转个数
+	{
+		charId			=	string	// 玩家ID|怪物ID|...
+		type			=	string	// 角色类型(Player, Monster)
+		x				=	int		// 坐标x
+		y				=	int		// 坐标y	
+	}
+	propertyChgCount	=	short	// 场景属性更新个数
+	{
+		charId			=	string	// 玩家ID|怪物ID|...
+		type			=	string	// 角色类型(Player, Monster)
+		propertyLength	=	int		// 属性字典长度
+		propertyDictionary	=	pd		// 属性字典 (武器模型ID, 铠甲模型ID, 翅膀模型ID, 坐骑模型ID ...)
+	}
+	otherSpriteCount 	=	short	// 其它精灵个数
+	{
+		charId			=	string	// 精灵唯一ID
+		type			=	string	// 角色类型(PlayerAvatar...)
+		x				=	int		// 坐标x
+		y				=	int		// 坐标y
+		propertyLength	=	int		// 属性字典长度
+		propertyDictionary	=	pd	// 详见下面的otherSprite属性字典内容	
+		stateCount		=	short	// 状态个数
+		{
+			id			=	short	// 状态ID
+		}
+	}
+	
+-------- otherSprite 属性字典内容 --------------------
+PlayerAvatar:	玩家精灵
+	ownerId			=	string	// 玩家唯一ID
+	name			=	string	// 玩家名称
+	profession		=	byte	// 玩家职业
+	level			=	int		// 等级
+	gender			=	byte	// 性别
+	hp				=	int		// 当前血量
+	hpMax			=	int		// 当前血量上限
+	speed			=	int		// 移动速度
+	weaponId		=	int		// 武器ID, 0表示没有
+	armorId			=	int		// 铠甲ID, 0表示没有
+	wingId			=	int		// 翅膀ID, 0表示没有
+	mountId			=	int		// 坐骑ID, 0表示没有
+	knightLevel		=	byte	// 爵位等级
+	unionName		=	string	// 公会名称
+	isKingCity		=	byte	// 0:不是王城公会成员,1:王城公会成员
+	
+	
+========================= 掉落信息 ======================
+G2C_Scene_LootInfo		=	380		// 通知玩家掉落信息
+	count				=	short	// 掉落个数
+	{
+		lootId			=	string	// 掉落物ID
+	}
+	
+========================= 掉落 =========================
+C2G_Scene_PickUp		=	381		// 拾取掉落
+	count				=	short	// 拾取掉落个数
+	{
+		charId			=	string	// 掉落ID
+	}
+	
+	
+========================= 采集 =========================
+C2G_Scene_StarttoPluck	=	385		// 开始采集
+	charId				=	string	// 采集物ID
+
+G2C_Scene_InterruptPluck = 	388		// 打断采集
+
+========================= 状态 =========================
+G2C_Scene_State_Change	=	390		// 广播状态改变
+	type				=   byte	//1 = 玩家 | 2 = 怪物
+	charId				=	string	// 玩家ID|怪物ID|...
+	count				=	short	// 状态个数 
+	{
+		stateId			=	short	// 状态ID
+	}
+========================= 状态列表(stateId)=======================
+流血	=	501
+灼烧	=	502
+眩晕	=	503
+沉默	=	504
+无敌	=	505
+魔免	=	506
+麻痹	=	507
+物免	=	508
+中毒	=	509
+缓速	=	510
+隐身	=	511
+魔法盾 =   512
+
+ 
+	

@@ -1,0 +1,18 @@
+StatUnion:
+	statLogType	=			9
+	n1			=			optType;		byte
+							1:加入公会
+							2:退出公会
+							3:创建公会
+							4:踢出公会
+							5:改变官职
+
+	n2			=			officialId		byte	
+							1:会长
+							2:副会长
+							3:帮众
+					
+	s1			=			unionId	//	公会Id		string
+							
+							
+					

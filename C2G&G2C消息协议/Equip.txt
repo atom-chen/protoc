@@ -1,0 +1,78 @@
+﻿Equip_Message_Begin	=	900 //装备消息起始值
+
+//穿戴部位bodyId
+1=武器
+2=衣服
+3=头盔
+4=腰带
+5=鞋子        
+6=项链        
+7=手镯
+8=戒指
+9=勋章           
+10=翅膀 
+11=魔血石
+
+C2G_Equip_List			        = Equip_Message_Begin+1		    //穿戴装备列表请求
+G2C_Equip_List			        = Equip_Message_Begin+2 		//穿戴装备列表返回
+	count 				        = short				            //装备的数量，接下来为各个物品的数据段
+    {       
+    	id						= string						//装备的唯一标示id                
+        bodyId                  = byte                          //穿戴部位id
+		posIndex		        = byte						    //在穿戴部位的位置，从0开始
+        refId                   = string                        //装备的refId  
+        pdCount                 = byte                          //属性字典的数量
+        {                                      
+            which           =byte                               //属性字典的类型：1 总属性， 2 洗练属性
+            dataLenght     	= int	                            //属性字典长度
+            PropertyDictionary						            //物品的属性字典
+        }
+    }
+-----------------------------------------------------------------------
+
+C2G_Equip_PutOn	                = Equip_Message_Begin+3         //穿戴装备请求
+	grid						= short							//装备所在背包格子Id
+    bodyId                      = byte                          //穿戴部位id
+    posIndex                    = byte                          //在穿戴部位的位置，从0开始  
+-----------------------------------------------------------------------
+    
+C2G_Equip_UnLoad                = Equip_Message_Begin+4         //卸下装备请求
+    bodyId                      = byte                          //穿戴部位id
+    posIndex                    = byte                          //在穿戴部位的位置，从0开始   
+------------------------------------------------------------------------
+   
+G2C_Equip_Update = Equip_Message_Begin+5                        //装备更新返回.
+    eventType                   = byte                          //更新类型：1 增加，即装备穿戴上; 2 删除，即装备卸下；3 修改，装备属性发生变化
+    count 				        = short				            //装备的数量，接下来为各个物品的数据段
+    {
+    	id						= string						//物品的唯一标示id    
+        bodyId                  = byte                          //穿戴部位id
+		posIndex		        = byte						    //在穿戴部位的位置，从0开始
+        refId                   = string                        //装备的refId  
+        pdCount                 = byte                          //属性字典的数量
+        {                                      
+            which               = byte                          //属性字典的类型：1 总属性， 2 洗练属性
+            dataLenght     	    = int	                        //属性字典长度
+            PropertyDictionary						            //物品的属性字典
+        }
+    }
+------------------------------------------------------------------------
+G2C_Equip_Info = Equip_Message_Begin + 6                        //装备查看返回.  
+    	id						= string						//物品的唯一标示id    
+        bodyId                  = byte                          //穿戴部位id
+		posIndex		        = byte						    //在穿戴部位的位置，从0开始
+        refId                   = string                        //装备的refId  
+        pdCount                 = byte                          //属性字典的数量
+        {                                      
+            which               = byte                          //属性字典的类型：1 总属性， 2 洗练属性
+            dataLenght     	    = int	                        //属性字典长度
+            PropertyDictionary						            //物品的属性字典
+        }
+G2C_Equip_Error				= Equip_Message_Begin+99
+    errorCode               = int 
+    errorCode定义：                          
+    1,从背包指定位置拿装备失败
+    2,指定bodyId目前还不能穿戴装备
+    3,bodyAreadId/posId出错 
+    4,背包已经满了，不能卸载装备
+    5,根据给定的bodyId和position没有拿到对应的装备

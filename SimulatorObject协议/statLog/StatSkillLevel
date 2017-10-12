@@ -1,0 +1,4 @@
+StatLevel	=	42			//玩家升级
+n1			=	level		//技能当前等级
+n2			=	exp			//技能当前等级下 经验值
+s1			=	skillName	//技能名称

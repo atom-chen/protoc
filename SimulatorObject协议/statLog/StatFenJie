@@ -1,0 +1,2 @@
+StatFenJie	=	16							// 装备分解 (等同于 装备出售)
+s1			=			itemRefId			// 道具refId

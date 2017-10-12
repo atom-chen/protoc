@@ -1,0 +1,5 @@
+StatAchievement
+statLogType	=			8
+n1			=			byte	achievementType		//成就类型
+n2			=			int		completeCondition	// 完成条件
+s1			=			string	achievementRefId	// 成就refId

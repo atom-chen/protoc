@@ -1,0 +1,51 @@
+   排行榜消息起始值
+//-----------------------------------------------------------------------------------------------------------
+
+SortBoard_Message_Begin = 3400;
+
+C2G_SortBoard_GetSortBoardVersion = 3401;       // 请求指定排行榜版本号
+ 		int SortBoardType   // 排行榜类型
+ 								  	/** 角色战斗力 */   0
+									/** 角色等级 */     1
+									/** 角色财富 */     2
+									/** 角色爵位 */     3
+									/** 玩家翅膀 */     4
+									/** 玩家坐骑 */     5
+									/** 玩家法宝 */     6
+
+G2C_SortBoard_GetSortBoardVersion = 3402;		// 排行指定榜版本号返回
+		int SortBoardType
+       	int Version
+       
+C2G_SortBoard_GetSortBoardData = 3403			// 请求指定排行榜数据
+		int SortBoardType 
+		
+G2C_SortBoard_GetSortBoardData = 3404			// 指定排行榜数据返回
+		int SortBoardType
+		int rank							//自己的排名
+		long score							//自己的分数
+		int lenght						//排行榜的人数
+			String PlayerId
+			String name
+			byte profession
+			long score
+			
+C2G_SortBoard_GetTopPlayerData = 3407			// 请求各个排行榜第一名的玩家数据
+		
+G2C_SortBoard_GetTopPlayerData = 3408			// 返回各个排行榜第一名的玩家数据
+		byte size
+			String PlayerName
+			
+C2G_SortBoard_PFS_GetBoardList = 3409			// 请求指定排行榜指定职业数据
+		int SortBoardType					// 排行榜类型
+		int profession						// 职业id
+
+G2C_SortBoard_PFS_GetBoardList = 3410			// 指定排行榜数据返回
+		int SortBoardType
+       	int Version
+       	byte profession
+		byte lenght						//排行榜的人数
+			String PlayerId
+			String name
+			String unionName
+			long score

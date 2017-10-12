@@ -1,0 +1,12 @@
+StatGameInstanceQuest		副本任务Stat日志
+	StatType	= 			20
+	n1			=			optType;
+							1:Accept  接受
+							2:Finish  完成
+							3:Reward  领取奖励
+
+	s1			=			questRefId  任务RefId
+	
+	s2			=			gameInstanceRefId  副本RefId
+	
+	s3			=			gameInstanceSceneId  副本场景Id   

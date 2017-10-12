@@ -1,0 +1,11 @@
+AchievePointStat
+statLogType	=			37
+n1			=			byte	optType			//增加或者减少   1-->Add  2-->Delete
+n2			=			byte	sourceType		//来源或者去向   
+														1-->  任务
+														2-->  成就令牌
+														3-->  成就奖励
+														4-->  购买勋章
+
+s3			=			int		number			// 数量
+

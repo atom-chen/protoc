@@ -1,0 +1,10 @@
+mail
+playerId		=		string
+mailId			=		stirng
+Content			=		string
+gold			=		int
+coin			=		int
+item			=		string
+isRead			=		boolean
+time			=		long
+mailType		=		byte			

@@ -1,0 +1,182 @@
+﻿	Union_Message_Begin = 2900
+	
+C2G_Union_UnionList		=	Union_Message_Begin + 1;
+	playerId			=	String			//玩家唯一名字
+	type				=	byte			//1 (申请所有公会列表) 2(未知)
+	part				=	byte			//列表段数
+G2C_Union_UnionList		=	Union_Message_Begin + 2;
+	type	=	byte{//列表类型
+		(0为返回所有公会的列表)	
+		totalPart=short	//总段数
+		count	=	short{//公会列表的个数
+				rank		=	short	公会排名
+				unionName	=	String	公会名称
+				chairmanName=	String	会长名称
+				number		=	int		公会人数
+						}
+		unionName=	String	//玩家申请加入公会的名称(如果没有申请就为"")
+	
+		(1为返回自己公会的公会列表)
+		totalPart		=	short	//总段数
+		unionName		=	String	公会名称	
+		chairmanName	=	String	会长名称
+		autoState		=	byte	//自动通过的状态
+		totalNumner		=	int		总人数
+		unionNotice		=	String	公会公告		
+		number			=	int 	{	//该分段公会人数
+			playerId	=	String	玩家唯一id
+			name		=	String 	成员名称
+			profession	=	byte	职业
+			level		=	int		等级
+			figthValue	= 	int		战力
+			officialId	=	byte	职位
+			online  	=	byte	是否在线 0 不在线  1在线
+			vipType		=	byte	vip类型 0:非vip 1,青铜vip 3, 黄金vip
+			logoutType	=	byte	1:三天前，2:昨天  3:今天 4：在线
+		}
+	
+	}
+	
+	
+	
+	
+C2G_Union_CreateUnion	=	Union_Message_Begin + 3;
+	playerId			=		String		//玩家id
+	unionName			=		String		//创建公会的名字
+G2C_Union_CreateUnion	=	Union_Message_Begin + 4;
+
+------------------------------------------------------------	
+C2G_Union_JoinUnion		=	Union_Message_Begin + 5;
+	playerId			=		String		//玩家id
+	unionName			=		String		//申请加入的公会名称
+G2C_Union_JoinUnion		=	Union_Message_Begin + 6;	返回了该条消息改变按钮
+	status				=	byte	//1,自动通过，界面刷新，2，保持原来界面
+	
+
+C2G_Union_CancelJoin	=	Union_Message_Begin + 7;
+	playerId			=	String		//玩家Id
+	unionName			=	String		//公会名称
+G2C_Union_CancelJoin	=	Union_Message_Begin + 8;	
+	
+		
+C2G_Union_Exit		=	Union_Message_Begin + 9；
+	playerId		=	String		//玩家Id
+	unionName		=	String		//公会名称
+G2C_Union_Exit		=	Union_Message_Begin + 10；
+
+	
+------------------------------------------------------------
+查看申请列表：
+C2G_Union_ApplyList	=	Union_Message_Begin + 11;
+	playerId		=	String		//玩家的id(会长的id)
+	unionName		=	String		//公会名字
+G2C_Union_ApplyList	=	Union_Message_Begin + 12;
+	count			=		short
+	{
+		playerId	=		String	
+		playerName	=		String	//申请玩家的姓名
+		professionId=		byte	//职业
+		level		=		int		//等级
+		vipType		=		byte	//vip类型
+	}
+
+处理玩家申请
+C2G_Union_HandleApply		=	Union_Message_Begin + 13;
+	playerId				=	String		//玩家id
+	playerId				=	String		//申请玩家的id
+	unionName				= 	String		//公会名称
+	vote					=	byte		//0 拒绝	1 同意
+G2C_Union_HandleApply		=	Union_Message_Begin + 14;
+	 
+踢出玩家	
+C2G_Union_KickOutMember		= 	Union_Message_Begin + 15;
+	playerId				=	String		//玩家Id
+	playerId				=	String		//被踢出玩家的Id
+	unonName				=	String		//公会名称
+C2G_Union_KickOutMember		= 	Union_Message_Begin + 16;
+	
+提升官职	
+C2G_Union_UpgradeOffice		=	Union_Message_Begin + 17;
+	playerId				=	String		//玩家Id
+	playerId				=	String		//被提升玩家的Id
+	unionNmae				=	String		//公会名称
+	officeId				=	byte		//改变之后的官职id
+G2C_Union_UpgradeOffice		=	Union_Message_Begin + 18;
+	
+
+编辑公告
+C2G_Union_EditNotice	=	Union_Message_Begin + 19;
+	playerId			=		string	//id
+	unionName			=		String 	//公会名称
+	message				=		String	//公告内容
+G2C_Union_EditNotice	=	Union_Message_Begin + 20;
+
+C2G_Union_AutoAgree		=  	Union_Message_Begin + 21;
+	unionName			=	String	
+	autoState			=	byte	//0--取消自动通过	1 设定为自动通过
+C2G_Union_Invite		=	Union_Message_Begin + 22;
+	playerId			=	String	//邀请人的id
+	unionName			=	String	//公会名称
+	playerId			=	String	//被邀请人的id
+C2G_Union_ReplyInvite		=	Union_Message_Begin + 23;
+	playerId 				= 	String	//被邀请人的id
+	invitePlayerId = String				//邀请人的id
+	unionName				=	String	//公会名称
+	reply 					=	byte	//回复邀请，0拒绝，1同意 
+	
+C2G_Union_Chat				=	Union_Message_Begin + 24
+	unionName				=	String
+	message					=	String
+G2C_Union_Chat				=	Union_Message_Begin + 25
+	player					=	Player
+	msg						=	String
+	
+G2C_Union_Invite			=	Union_Message_Begin + 26
+	invitePlayerId			=	String
+	invitePlayerName		=	String
+	unionName				=	String
+	level					=	int
+G2C_Union_ReplyInvite		=	Union_Message_Begin + 27;
+	playerName				=	String
+	reply					=	byte
+	
+G2C_Union_Update			=	Union_Message_Begin + 28;
+	 byte 					=	type	// 1,增加成员 2，成员退出
+//	 String 				=	playerId
+//	 String 				=	playerName
+//	 byte 					=	profession
+//	 int 					=	level
+//	 int 					=	fightValue
+//	 byte 					=	officialId
+//	 byte 					=	online
+------------------------------------------------
+查看信息
+C2G_OtherPlayer_EquipList	= 521		// 玩家列表
+	charId				=	String		//玩家唯一id
+G2C_OtherPlayer_EquipList	= 522		//列表返回	
+	charId				=	String		//玩家唯一id
+	count 				        = short				            //装备的数量，接下来为各个物品的数据段
+    {       
+    	id						= string						//装备的唯一标示id                
+        bodyId                  = byte                          //穿戴部位id
+		posIndex		        = byte						    //在穿戴部位的位置，从0开始
+        refId                   = string                        //装备的refId  
+        pdCount                 = byte                          //属性字典的数量
+        {                                      
+            which           =byte                               //属性字典的类型：1 总属性， 2 洗练属性
+            dataLenght     	= int	                            //属性字典长度
+            PropertyDictionary						            //物品的属性字典
+        }
+    }
+ 
+ C2G_OtherPlayer_Attribute	= 523	//请求其他玩家属性
+ 	charId					= string //玩家唯一的标识
+ G2C_OtherPlayer_Attribute	= 524	//其他玩家属性
+ 	charId				=	String	//玩家唯一标识
+ 	propertyLength		=	int		// 属性字典长度
+	propertyDictionary	=	pd		// 属性字典
+	
+						
+
+	
+	

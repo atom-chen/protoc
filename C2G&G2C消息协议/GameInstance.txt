@@ -1,0 +1,80 @@
+﻿Game_Instance_Message_Begin = 2500;  // 副本消息起始
+//-----------------------------------------------------------------------------------
+
+-----查询副本列表--------------------------------
+C2G_GameInstanceList = Game_Instance_Message_Begin + 1;
+
+G2C_GameInstanceList = Game_Instance_Message_Begin + 51;
+byte    length 副本个数
+		{
+			crtGameInstanceRefIds 	: String	//副本RefId列表
+			crtGameInstanceId 	: String		//副本唯一ID列表
+			countsInDay 		: int           // 当天剩余的次数
+			countsInWeek		: int		    // 当周剩余的次数
+		}
+
+-----进入副本--------------------------------
+C2G_GameInstanceEnter = Game_Instance_Message_Begin + 2;
+String gameInstanceId //副本唯一ID
+
+
+-----离开副本--------------------------------
+C2G_GameInstanceLeave = Game_Instance_Message_Begin + 3;
+G2C_GameInstanceLeave = Game_Instance_Message_Begin + 53;
+-----领取副本任务奖励--------------------------------------
+C2G_Reward_GameInstanceQuest	= Game_Instance_Message_Begin + 54;		//领取副本任务奖励
+	
+C2G_Show_GameInstanceQuestReward = Game_Instance_Message_Begin + 55;	//显示副本奖励
+
+-----副本层完成--------------------------------
+G2C_GameInstanceSceneFinish = Game_Instance_Message_Begin + 52;
+
+
+-----副本进入下一层--------------------------------
+C2G_GameInstanceEnterNextLayer = Game_Instance_Message_Begin + 4;
+String gameInstanceId //副本唯一ID
+
+
+-----副本任务部分---------------------------------
+G2C_Instance_QuestAccepted				=		Game_Instance_Message_Begin + 5;	// 已接副本任务返回（默认一进入就接取任务完成）
+	gameInstanceId    	String
+	count	=   byte //任务数量, 
+	{
+		QuestId(string // 每个任务id):
+		state : byte,
+		"orderNumber" :
+		{
+			orderType 		: byte		  // 任务类型
+			"number" 		: int         // 杀怪数量、物品数量（缺省值为-1）
+			"time"			: int		  // 剩余时间（缺省值为-1）
+		}
+	}
+	
+G2C_Instance_QuestUpdate				=		Game_Instance_Message_Begin + 6	// 任务的进度更新
+	QuestId(string //每个任务id),
+	"orderNumber"   byte
+	{
+		"number" 		: int         //杀怪数量、物品数量、对话状态（0未对话，1已对话）
+		"time"			: int		  // 剩余时间（缺省值为-1）
+	}
+	
+G2C_Instance_QuestFinish				= 		Game_Instance_Message_Begin + 7;	// 状态更新
+	QuestId	=	string	//任务id, 
+	RewardType = byte   //完成任务的奖励类型1:即时发奖             0：离开发奖
+	
+G2C_Instance_QuestReward				= 		Game_Instance_Message_Begin + 8;	// 任务发奖
+	rewardTime           long      领取奖励任务时间
+	rewardType           byte   	(1: 发送到背包      	0： 发送到邮箱)
+	count	=   byte //奖励的数量, 
+	[
+		QuestId(string // 每个任务id),
+	]
+
+G2C_Instance_LayerFinish				= 		Game_Instance_Message_Begin + 9;	// 副本到达完成目标（提供给客户端停止挂机使用）
+
+	
+	----------错误码--------------------------------
+ResultEvent	 = 2500~2599
+	// 0x80000835=副本未开放
+	// 0x80000836=副本进入条件不足
+	

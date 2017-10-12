@@ -1,0 +1,10 @@
+StatWing:					翅膀stat日志
+	StatType	= 			17
+	n1			=			optType;
+							1:获取翅膀
+							2:翅膀升级
+
+	n2			=			WingLevel   //  翅膀等级
+					
+	s1			=			WingRefId	//	翅膀RefId
+							

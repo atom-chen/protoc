@@ -1,0 +1,16 @@
+StatStore					商城及商店Stat日志
+	StatType	= 			22
+	n1			=			optType;
+							0:             不限购
+							1:PersonLimit  个人限购
+							2:ServerLimit  全服限购
+
+	n2			=			itemNum  购买物品数量
+	
+	n3			=			costMoney  消耗的货币数量
+	
+	n4			=			moneyType  消耗的货币类型(元宝：1, 绑定元宝：2)
+	
+	s1			=			itemRefId  商品包含的道具RefId
+	
+	s2			=			storeItemId  商品RefId   

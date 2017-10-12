@@ -1,0 +1,56 @@
+Buff_Message_Begin = 1500
+
+G2C_Attach_Buff 	= Buff_Message_Begin + 1
+  
+	casterType		= string
+	caster			= string
+	targetType		= string
+	target			= string
+	type			= byte  // 0取消buff 1 增加buff
+	buffRefId		= string // buffRefId
+	createTime		= long	
+	duration		= long		// buff的剩余持续时间	
+	absoluteDuration = long		//buff 初始持续时间
+	
+	
+G2C_Effect_Buff 	= Buff_Message_Begin + 2
+	casterType		= string
+	caster			= string
+	targetType		= string
+	target			= string
+	type			= byte  // 1=hp  2 = mp 3 = die (死亡忽略下面)
+	value = int  	//伤害值 or 减魔
+	{	if(type == 1 type == 2)		
+		crtValue = int		// 当前血量 or mp
+		MaxValue = int		//当前血量最大值 or maxMp
+	}
+	
+
+	
+C2G_Buff_List       = Buff_Message_Begin + 4
+G2C_Buff_List       = Buff_Message_Begin + 5
+   count{			= int
+	casterType		= string
+	caster			= string
+	targetType		= string
+	target			= string
+	buffRefId		= string // buffRefId
+	createTime		= long	
+	duration		= long		// buff的剩余持续时间	
+	absoluteDuration = long		//buff 初始持续时间
+	}
+
+	
+C2G_MoXueShi_Amount       = Buff_Message_Begin + 7
+G2C_MoXueShi_Amount 	  = Buff_Message_Begin + 8
+	buffRefId			  = string
+	createTime			  = long
+	amount 				  = int  	//剩余量
+
+
+
+
+
+
+
+

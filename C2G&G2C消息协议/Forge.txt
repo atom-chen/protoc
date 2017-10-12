@@ -1,0 +1,63 @@
+﻿Forge_Message_Begin = 2200
+
+----------------------强化
+C2G_Bag_Streng			        = Forge_Message_Begin+1 		//强化背包装备请求
+    gridId 			            = short					        //装备在背包里的格子Id	
+    yuanbao                    	= int                   		//所需要的元宝
+	isUseBinded					= byte							//是否使用绑定的（1 = 使用绑定，0=不使用绑定）
+C2G_Body_Streng                 = Forge_Message_Begin+2         //强化身上装备请求
+    bodyAreaId                  = byte                          //身体部位id
+    posId                       = byte                          //位置Id，0-n
+    yuanbao                     = int                           //所需要的元宝
+    isUseBinded					= byte							//是否使用绑定的（1 = 使用绑定，0=不使用绑定）
+
+C2G_Bag_StrengScroll		    = Forge_Message_Begin+3 		//强化卷强化背包装备请求 
+    scrollGridId			    = short					        //强化卷在背包里的格子Id
+    gridId 			            = short					        //需要强化的装备在背包里的格子Id
+
+C2G_Body_StrengScroll           = Forge_Message_Begin+4         //强化卷强化身上装备请求
+    scrollGridId		        = short				            //强化卷的位置
+    bodyAreaId                  = byte                          //身体部位ID
+    posId                       = byte                          //位置Id，0-n
+
+G2C_Streng_Ret                  =Forge_Message_Begin+5          //强化结果返回
+    ret                         = byte                          //0为失败，1为成功。
+    
+----------------------洗练
+C2G_Bag_Wash                    = Forge_Message_Begin+6         //洗炼背包装备请求
+    gridId                      = short                         //装备的背包位置
+    isUseBinded					= byte							//是否使用绑定的（1 = 使用绑定，0=不使用绑定）
+    count                       = short                         //锁定属性的数量
+    {
+        symbolId                                                //属性Id
+    }
+
+C2G_Body_Wash                   = Forge_Message_Begin+7         //洗练身上装备请求
+    bodyAreaId                  = byte                          //身体部位Id
+    posId                       = byte                          //位置Id，0-n
+    isUseBinded					= byte							//是否使用绑定的（1 = 使用绑定，0=不使用绑定）
+    count                       = short                         //锁定属性的数量
+    {
+        symbolId                                                //属性Id
+    }
+    
+----------------------分解
+C2G_Bag_Decompose               = Forge_Message_Begin+8         //分解背包装备请求
+    count                       = short                         //分解的装备个数
+    {
+        gridId                  = short                         //装备的背包位置
+    }
+G2C_Bag_Decompose		= Forge_Message_Begin+9		//分解数据返回
+    totalGold			= int				    总金币数
+    exp				    = long				总经验值  
+    itemCount			= short 			获得总道具数量
+    count{              = short            
+	refId			= string			物品refid
+	number			= int				物品数量	
+   }
+    
+---------------------系统开启
+G2C_ForgeOpen			= Forge_Message_Begin+10 	//锻造系统开启 
+    isStrengOpen		= byte		// 1-开启 0-未开
+    isWashOpen			= byte		//1-开启 0-未开
+ 

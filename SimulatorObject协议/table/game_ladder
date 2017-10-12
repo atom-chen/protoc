@@ -1,0 +1,15 @@
+game_ladder
+id			=			string
+memberData	=			byte[]
+
+		memberData:
+			playerName		=		string
+			remainChallengetCount=	int
+			rank			=		int
+			trend			=		byte
+			enterTime		=		long
+			streak			=		int
+			CDBeginTime		=		long
+			level			=		int
+			fightValue		=		int
+			rewardRank		=		int

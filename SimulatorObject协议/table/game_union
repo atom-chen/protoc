@@ -1,0 +1,38 @@
+game_union:
+id			=		string
+unionBytes	=		byte[]
+memberBytes	=		byte[]
+applyBytes	=		byte[]
+
+	unionBytes:
+		version		=	int
+		unionName	=	string
+		autoState	=	byte
+		createTime	=	long
+		kingCityType=	byte
+		message		=	string
+		createrPlayerId= string
+		createrPlayerName=string
+		isSignUp	=	boolean
+		isApplyGameInstance=boolean
+		becomeKingCityMills = long
+		
+	memberBytes:
+		membersNumber	=	int
+		{
+			playerId	=	string
+			playerName	=	string
+			professionId=	byte
+			level		=	int
+			fightValue	=	int
+			unionOfficialId=byte
+			isOnline	=	byte
+			enterTie	=	long
+		}
+		
+	applyBytes:
+		applylistSize	=	int
+		{
+			playerId	=	string
+		}
+		

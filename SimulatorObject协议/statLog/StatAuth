@@ -1,0 +1,4 @@
+StatAuth 	=			账号登录
+statLogType	=			1
+n1			=			int		state				//状态(0:身份合法.验证成功 1:非法请求.md5校验失败 2:非法请求.时戳过期 3:非法请求.参数错误)
+s1			=			string	ip					//登录ip

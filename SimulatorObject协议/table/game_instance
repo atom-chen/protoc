@@ -1,0 +1,8 @@
+game_instance:
+id				=			string		
+identityId		=			string
+refId			=			string
+data			=			byte[]
+
+		data:
+			record	=	string

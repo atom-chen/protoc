@@ -1,0 +1,6 @@
+StatTalisman = 13						//法宝
+n1	 =	optType							//操作类型  1=获取 2=激活 3=升级 4=取消激活
+n2	 =	level							//当前操作的法宝等级
+n3	 =  state							//当前操作的该法宝状态	0=未获取状态 1=未激活状态 2=激活状态
+s1	 =  talismanRefId					//法宝refId
+										

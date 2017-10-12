@@ -1,0 +1,14 @@
+﻿多倍经验活动预开始
+G2C_MultiTimesExp_PreStart    	= Scene_Activity_Message_Begin + 65,
+
+多倍经验活动开始
+G2C_MultiTimesExp_State  		= Scene_Activity_Message_Begin + 66,
+ state   byte       0开启  1关闭  
+
+请求活动剩余时间
+C2G_MultiTimesExp_RequestTime 	= Scene_Activity_Message_Begin + 67,
+
+活动剩余时间返回
+G2C_MultiTimesExp_RequestTime 	= Scene_Activity_Message_Begin + 68,
+timeToStar    long  距离活动开始的时间（活动未开始大于0  开始后等于0）
+timeToEnd     long  距离活动结束的剩余时间（活动开始大于0  活动结束等于0）

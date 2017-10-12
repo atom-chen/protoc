@@ -1,0 +1,180 @@
+no_delay_player:
+id						=			string		
+identityId				=			string
+identityName			=			string
+name					=			string
+talismanData			=			byte[]
+achievementData			=			byte[]
+buffData				=			byte[]
+states					=			byte[]
+vipData					=			byte[]
+activityData			=			byte[]
+digsData				=			byte[]
+
+	talismanData:
+		version			=			int				
+		cittaRefId		=			string
+		level			=			int
+		lastRewardTmie	=			long
+		goldReward		=			int
+		expRward		=			int
+		stoneReward		=			int
+		baoxiangSize	=			int
+		{
+			itemRefId	=			string
+			number		=			int
+		}
+		count			=			int
+		{
+			index		=			int
+			talismanRefId = 		string
+			state		=			byte
+			lastHandleTime =        long
+		}
+		
+	achievementData:
+		version			=			int
+		achievementSize	=			int
+		{
+			achieveId	=			string
+			success		=			byte
+		}
+		
+		achievePoint	=		int
+		killMonsterNumber=		int
+		killBossNumber	=		int
+		strengthNumber	=		int
+		washNumber		=		int
+		
+		
+	buffData:
+		version			=		int
+		count			=		int
+		{
+			buffRefId	=		string
+			lastAffectTime=		long
+			expireTime	=		long
+			createTime	=		long
+			length		=		int
+			properties	=		byte[]
+		}
+		
+	
+	states:
+		version			=		int
+		state			=		byte
+		
+		
+	vipData:
+		version			=		int
+		vipType			=		byte
+		
+		if(persistenceObject.isVip())
+		{
+			vipLevelDataRef =	string
+			vipStartTime	=	long
+			remainTime		=	long
+			vipEndTime		=	long
+			expTime			=	long
+			giftTime		=	long
+			
+			count			=	byte
+			{
+				level		=	int
+			}
+		}
+		lastUpdateLotteryCountTime=long
+		residueCount		=		int
+		
+		
+		activityData:
+			version				=		byte
+			
+			state				=		byte
+			remainCumulativeTime=		int
+			cumulativeTimeRefId	=		string
+		
+			signDateInfo		=		string
+			signDataListSize	=		int
+			{
+				day				=		int
+			}
+			signAwardMapSize	=		int
+			{
+				refId			=		string
+				type			=		byte
+				state			=		byte
+			}
+			openServerData		=		long
+			sevenLoginMapsSize	=		int
+			{
+				day				=		int
+				state			=		byte
+			}
+			
+			crtRideRewardRefId	=		string
+			crtWingRewardRefId	=		string
+			rideAwardMapsSize	=		int
+			{
+				refId			=		string
+				type			=		byte
+				state			=		byte
+			}
+			
+			wingAwardMapsSize	=		int
+			{
+				refId			=		string
+				type			=		byte
+				state			=		byte
+			}
+			
+			talisAwardMapsSize	=		int
+			{
+				refId			=		string
+				type			=		byte
+				state			=		byte
+			}
+			
+			crtLevelUpRewardRefId	=	string
+			levelUpMapsSize		=		int
+			{
+				refId			=		string
+				type			=		byte
+				state			=		byte
+			}
+			
+			rewardMapsSize		=		int
+			{
+				refId			=		string
+				type			=		byte
+				state			=		byte
+			}
+			
+			isFirstRecharge					=	byte
+			crtRechargeValue				=	int
+			hadReceiveRechargeGiftStage		=	string
+			LastTotalRechargeGiftsEndTime	=	long
+		
+			dayRecharge						=	byte
+			lastDayRechargeTime				=	long
+			LastDayRechargeGiftsEndTime		=	long
+			crtWeekConsumeValue				=	int
+			hadReceiveWeekConsumeGiftStage	=	string
+			LastWeekTotalConsumeGiftsEndTime=	long
+			lastWeekConsumeStartTime		=	long
+			
+			
+			
+			                                
+			   ���ĸ���                             int //
+			{
+				��������                    int
+				�����ʱ��                      long
+				��ȡ�ļ�¼����                    int
+				{
+					ÿ�εļ�¼                   byte
+				}
+			}
+			
+			
+		

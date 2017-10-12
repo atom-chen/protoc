@@ -1,0 +1,54 @@
+﻿WareHouse_Message_Begin = 4500
+
+C2G_WareHouse_Capacity			= WareHouse_Message_Begin + 1		//仓库容量请求	
+G2C_WareHouse_Capacity			= WareHouse_Message_Begin + 2 		//仓库容量返回
+	maxCap 			        = short				            //仓库最大容量
+	curCap				    = short				            //仓库已开启容量（格子数）
+
+------------------------------------------------------------------------
+	
+C2G_WareHouse_Item_List				= WareHouse_Message_Begin + 3		//物品列表请求 
+G2C_WareHouse_Item_List				= WareHouse_Message_Begin + 4		//物品列表返回	
+	capacity 		     	= short				    //背包容量
+	itemCount 				= short				    //物品数量，接下来为各个物品的数据段
+	{
+		id				    = string					 //物品的唯一标示id
+		gridId 		        = short				         //物品的gridId
+        refId               = string                     //物品的refId  
+        pdCount             = byte                       //属性字典的数量
+        {                                      
+            which           = byte                   //  属性字典的类型：1 总属性， 2 洗练属性
+            dataLenght     	= int	                 //  属性字典长度
+            PropertyDictionary						 //  物品的属性字典
+        }
+	}
+
+
+------------------------------------------------------------------------
+C2G_WareHouse_Item_Update				= WareHouse_Message_Begin + 5
+	type					= char 					// 更新类型  
+													// 1 增加：  往仓库里添加物品
+													// 2 删除： 往仓库里移出物品
+	gridId					= short					// 物品仓库格子ID
+	
+G2C_WareHouse_Item_Update				= WareHouse_Message_Begin + 6 //物品更新返回
+	type 					= char                  //更新类型：
+                                                    // 1 增加：在一个未使用的格子里放置物品  
+                                                    // 2 删除：将一个放置了物品的格子清空
+                                                    // 3 改动：一个格子里放置的物品的属性发生变化（如堆叠数量，绑定状态等）
+	itemCount 		        = short				    //更新的物品数，接下来为各个物品的数据段
+        id                  = string			    //物品的唯一标示id
+		gridId 		   		= short				    //物品的gridId
+        refId           	= string                //物品的refId
+        pdCount             = byte                  //属性字典的数量
+        {                                      
+            which           = byte                   //  属性字典的类型：1 总属性， 2 洗练属性
+            dataLenght     	= int	                //  属性字典长度
+            PropertyDictionary						//  物品的属性字典
+        }
+
+
+------------------------------------------------------------------------
+C2G_WareHouse_Item_SoltUnLock			= WareHouse_Message_Begin + 9 		//解锁格请求
+G2C_WareHouse_Item_SoltUnLock			= WareHouse_Message_Begin + 10		//解锁格返回
+	remainMins 			    = int				        //解锁剩余分钟（依靠累积在线时间自动开启下个盒子）

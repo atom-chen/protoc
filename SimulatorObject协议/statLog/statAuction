@@ -1,0 +1,7 @@
+StatAuction = 40 						    //拍卖
+n1			=			optType				// 操作类型 1= 购买  2 = 拍卖 3 = 取消拍卖 4 = 过期  5=被拍卖 
+n2			=			number				//数量
+s1			=			itemRefId			// 道具refId
+s2			=			seller				// 出售者名称
+
+

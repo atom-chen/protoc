@@ -1,0 +1,55 @@
+﻿QST_Message_Begin                  	=            		600             //任务系统的消息
+//-----------------------------------------------------------------------------------------------------------
+// 与主线任务区分开来主线为1~50，日常任务起止为51~99
+C2G_QST_GetDailyQuestList			=      	QST_Message_Begin+51;	// 获取任务列表, 返回可接任务列表，已接任务列表
+
+G2C_QST_DailyQuestAcceptedList		= 		QST_Message_Begin+52; // 已接任务列表
+	count	=   byte //任务数量, 
+	{
+		QuestId(string // 每个任务id):
+		nowRing // int, 当前环数
+		level // 	byte, 日常任务等级
+		state:		byte,
+		"orderNumber"   byte
+		{
+			randomType      : byte         // 随机到的索引
+			"number" 		: int         //杀怪数量、物品数量、对话状态（0未对话，1已对话）
+		}
+	}
+	
+G2C_QST_DailyQuestVisibleList		= 		QST_Message_Begin+53; 	// 可接任务列表
+	count	 =   int //任务数量,
+	QuestId  =   string //每个任务id
+		nowRing // int, 当前环数
+		start   // byte, 当前日常任务等级
+	
+//-----------------------------------------------------------------------------------------------------------
+C2G_QST_DailyQuestAccept			=			QST_Message_Begin+54;	// 接收任务
+	QuestId  =   string //任务id
+
+//-----------------------------------------------------------------------------------------------------------
+C2G_QST_DailyQuestSubmit			= 			QST_Message_Begin+55;	// 提交任务
+	QuestId  =   string //任务id
+	RewardLevel = byte   // 领取奖励倍数
+
+//-----------------------------------------------------------------------------------------------------------
+G2C_QST_DailyStateUpdate			= 			QST_Message_Begin+56;	// 状态更新
+	QuestId	=	string	//任务id, 
+	state	=	byte		//状态
+
+//-----------------------------------------------------------------------------------------------------------
+G2C_QST_DailyQuestUpdate			= 			QST_Message_Begin+57;	// 任务的进度更新
+	QuestId(string //每个任务id),
+	"orderNumber"      byte
+	{
+		randomType      : byte         // 随机到的索引
+		"number" 		: int         //杀怪数量、物品数量、对话状态（0未对话，1已对话）
+	}
+	
+//-----------------------------------------------------------------------------------------------------------
+C2G_QST_DailyStartLevel			= 			QST_Message_Begin+58;	// 星星等级更新
+	QuestId(String //刷新等级的任务名）
+	
+G2C_QST_DailyStartLevel			= 			QST_Message_Begin+59;	// 星星等级更新
+	QuestId(String //刷新等级的任务名）
+	StartLevel  byte

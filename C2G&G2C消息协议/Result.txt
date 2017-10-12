@@ -1,0 +1,4 @@
+
+ResultEvent	=	99		// 通用事件
+	msgId	=	short	// 实际包含的ActionEventId 	
+	code	=	int		// 表示成功(>0)和错误(<0)

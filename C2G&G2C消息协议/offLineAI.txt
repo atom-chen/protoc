@@ -1,0 +1,49 @@
+﻿MGEventDefines.OffLineAISeting_Begin = 3800
+-------查看离线奖励-------
+C2G_ViewOffLineAIReward = MGEventDefines.OffLineAISeting_Begin + 1
+
+G2C_ViewOffLineAIReward = MGEventDefines.OffLineAISeting_Begin + 50
+itemsSize	short
+{
+	itemRefId	String
+	itemNum		int
+}
+exp		int
+money	int
+aiLogModelListSize	short
+{
+	type	byte
+	if(type == 1){
+		aiGameSceneRefId	String
+	}else if(type == 2){
+		playerId		String
+		playerName		String
+		dorpItemSize	short
+		{
+			itemRefId	String
+			itemNum		int
+		}
+	} 
+}
+
+
+-------领取离线奖励-------
+C2G_DrawOffLineAIReward = MGEventDefines.OffLineAISeting_Begin + 2
+G2C_DrawOffLineAIReward = MGEventDefines.OffLineAISeting_Begin + 51
+
+-------离线挂机AI设置-------
+C2G_OffLineAISeting = MGEventDefines.OffLineAISeting_Begin + 3 
+hp				int
+mp				int
+equipLv			int
+qualitySize	byte
+{
+	quality			int //1：选白 2：选蓝 3：选紫
+}
+professionIdSize	byte
+{
+	professionId	int	 //1：选战士 2：选法师 3：选道士
+}
+
+
+

@@ -1,0 +1,28 @@
+Scene_Message_Begin = 300;   // 场景消息起止
+/** NPC传送消息接口*/
+C2G_Npc_Transfer = Scene_Message_Begin + 73;
+	NpcRefId    	String
+	targetScene		String
+	transferInId    int
+
+
+————————————————————————————————————————————————————————————————————————————————————————————————
+
+
+Pluck_Message_Begin = 1300; // 采集消息
+/** NPC采集消息接口*/
+C2G_Pluck_StartoClient = Pluck_Message_Begin + 1; // 开始采集
+	NpcRefId     	String
+
+G2C_Pluck_StartoClient = Pluck_Message_Begin + 2; // 采集开始响应
+	int				(1 or 0) 1为成功，可以开始倒数。 0为错误
+	int				采集时间
+
+G2C_Pluck_BeInteruuptedToClient = Pluck_Message_Begin + 3;// 采集终端消息
+	
+
+G2C_Pluck_EndToClient = Pluck_Message_Begin + 4;// 采集完成消息
+
+————————————————————————————————————————————————————————————————————————————————————————————————
+
+

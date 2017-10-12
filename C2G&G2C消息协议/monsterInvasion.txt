@@ -1,0 +1,31 @@
+Scene_Activity_Message_Begin = 3700
+=============================怪物入侵=======================
+C2G_MonsterIntrusion_EnterMap = Scene_Activity_Message_Begin + 1;
+sceneRefId             =   string            //跳转的场景id
+x                      =   int               //跳转的x坐标
+y                      =   int               //跳转的y坐标
+C2G_MonsterIntrusion_LeaveMap = Scene_Activity_Message_Begin + 2;
+
+G2C_MonsterIntrusion_ContinuTime = Scene_Activity_Message_Begin + 3;
+timeToStart =	long	//距离活动开始实际
+timeToEnd 	=	long	//距离活动结束时间
+G2C_MonsterIntrusion_EnterMap = Scene_Activity_Message_Begin + 4;
+continuTime            =   long              //持续时间
+ExpMultiple            =   double            //活动经验倍数 
+monsterRefId           =   string            //即将出现的怪物id（如果没有回传“”）
+C2G_MonsterIntrusion_ContinuTime = Scene_Activity_Message_Begin + 5;
+
+G2C_MonsterIntrusion_LeaveMap = MGEventDefines.Scene_Activity_Message_Begin + 6; //玩家离开游戏返回
+
+G2C_MonsterIntrusion_Font = MGEventDefines.Scene_Activity_Message_Begin + 7;//玩家头顶文字显示
+fontType               =    byte              //0:代表没有显示  1：显示第一条  2：显示第二条 3：显示第三条
+
+G2C_MonsterIntrusion_BossTimeRefresh = MGEventDefines.Scene_Activity_Message_Begin + 8;
+monsterRefId           =    String             //怪物refId
+sceneRefId			   = 	String			   //场景RefId
+refreshTime            =    long               //剩余刷新时间
+isDead				   =    byte			   // 怪物是否死亡。0：死亡，1：未死
+
+C2G_MonsterIntrusion_IsOpen = MGEventDefines.Scene_Activity_Message_Begin + 9;
+G2C_MonsterIntrusion_IsOpen = MGEventDefines.Scene_Activity_Message_Begin + 10;
+isOpen                 =    byte                //活动是否开启    1：开启     0：没开启

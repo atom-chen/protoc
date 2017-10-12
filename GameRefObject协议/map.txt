@@ -1,0 +1,56 @@
+﻿
+struct MapFileHeader
+{
+	char fileExt[64];	// SMCF
+	int  version;		// 版本信息: 201310241802
+	// 预留空间
+	char reserve[256];
+};
+
+struct MapInfoHeader
+{
+	int mapId;
+	char mapName[256];
+	short colNum;
+	short rowNum;
+	short cellHeight;
+	short cellWidth;
+	char renderMode;
+	char compress;
+	int  normalSize;
+	int  compressSize;
+	char reserve[256];
+}
+
+----client file
+MapFileHeader
+MapInfoHeader
+LayersData
+
+
+----server flie
+BlockData
+	byte		layerType // layerType = 3 为逻辑层
+	short		layerId
+	short		layerNameLen
+		{
+			string		layerName // 长度为上面len值
+		}
+	int		version // version == 0xffff4321
+	// map Width = cellWidth * nWidth
+	// map Height = cellHeight * nHeight
+	int		cellWidth
+	int		cellHeight
+	int		nWidth
+	int		nHeight
+	short		compress
+	byte		metaType // metaType = 1 为阻挡层
+	short		colorInfoNum
+		{ // 以下结构有colorInfoNum个
+			int		color
+			byte	colorId
+		}
+	// 阻挡数据
+	byte[height][width] blocked  // 1-阻挡 0-不阻挡
+	
+	

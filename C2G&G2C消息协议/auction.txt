@@ -1,0 +1,117 @@
+Auction_Message_Begin	=	4000  
+
+--请求一个玩家可购买的拍卖物品列表
+C2G_Auction_BuyList = Auction_Message_Begin + 1
+{
+    tag = init32 //客户端传给服务器再传给客户端
+    from = int32    //开始index(最小为1，最大为MAX_LIST_COUNT)
+    to = int32      //结束index
+    name = string   //物品的名字筛选。为空字符串时表示不限制名字
+    bodyAreaId = int16  //对应于装备的穿戴部位字段。为-1代表不限制穿戴部位
+    level = int16    //物品的使用等级筛选。为-1表示不限等级
+    canUseLimit = int16 //为1表示只筛选可使用的(满足使用等级和职业)；为-1表示不限
+    itemType 	= int16	//物品类型 ，1表示装备，2表示非装备, -1表示不限类型	
+}
+--返回一个玩家可购买的拍卖物品列表
+G2C_Auction_BuyList = Auction_Message_Begin + 2
+{
+    tag = init32 //客户端传给服务器再传给客户端
+    from = int32
+    to = int32
+    maxCount = int32
+    count = int32
+    {
+        id = string //物品的唯一标示id
+        refId = string //物品的refId  
+        remainTime = int32  //秒为单位
+        price = int32       
+        pdCount = byte                       //属性字典的数量
+        {                                      
+            pdType          = byte                   //  属性字典的类型：1 总属性， 2 洗练属性
+            dataLenght     	= short	                //  属性字典长度
+            PropertyDictionary						//  物品的属性字典
+        }
+    }
+}
+错误码：
+MMORPGErrorCode.CODE_AUCTION_DATA_ERROR
+
+--请求购买某个物品
+C2G_Auction_Buy = Auction_Message_Begin + 3
+{
+    id = string
+}
+--返回成功购买某个物品的id
+G2C_Auction_Buy = Auction_Message_Begin + 4
+{
+    id = string
+}
+错误码：
+MMORPGErrorCode.CODE_AUCTION_ITEM_NOT_EXIST
+MMORPGErrorCode.CODE_AUCTION_NOT_ENOUGH_MONEY
+
+--请求一个玩家正在出售的物品列表
+C2G_Auction_SellList = Auction_Message_Begin + 5
+{
+}
+--返回一个玩家正在出售的物品列表
+G2C_Auction_SellList = Auction_Message_Begin + 6
+{
+    count = int32
+    {
+        id = string //物品的唯一标示id
+        refId = string //物品的refId  
+        remainTime = int32  //秒为单位
+        price = int32       
+        pdCount = byte                       //属性字典的数量
+        {                                      
+            pdType           =byte                   //  属性字典的类型：1 总属性， 2 洗练属性
+            dataLenght     	= short	                //  属性字典长度
+            PropertyDictionary						//  物品的属性字典
+        }
+    }
+}
+
+--请求出售一个物品
+C2G_Auction_DoSell = Auction_Message_Begin + 7
+{
+    id = string
+    number = int32
+    price = int32 
+}
+--返回成功出售的物品的id
+G2C_Auction_DoSell = Auction_Message_Begin + 8
+{
+    id = string
+}
+错误码：
+MMORPGErrorCode.CODE_AUCTION_ITEM_NOT_EXIST
+MMORPGErrorCode.CODE_AUCTION_ITEM_NOT_ENOUGH
+MMORPGErrorCode.CODE_AUCTION_ITEM_BINDED
+MMORPGErrorCode.CODE_AUCTION_DATA_ERROR
+
+--请求取消出售某个物品
+C2G_Auction_CancelSell = Auction_Message_Begin + 9
+{
+    id = string
+}
+--返回成功取消出售的物品的id
+G2C_Auction_CancelSell = Auction_Message_Begin + 10
+{
+    id = string
+}
+错误码：
+MMORPGErrorCode.CODE_AUCTION_ITEM_NOT_EXIST
+
+C2G_Auction_DefaultPrice = Auction_Message_Begin + 11
+{
+    id = string
+    number = int32
+}
+G2C_Auction_DefaultPrice = Auction_Message_Begin + 12
+{
+    id = string
+    price = int32
+    
+}
+

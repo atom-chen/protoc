@@ -1,0 +1,40 @@
+Friedn_Message_Begin	= 1900
+	
+		----------获取分组玩家列表-------
+	C2G_GetPlayerList = Friedn_Message_Begin+1
+	groupType  byte  //分组类型
+	
+	G2C_GetPlayerList = Friedn_Message_Begin+2
+	groupType  byte  //分组类型
+	count	byte	//数量
+	{
+		playerName  String  //玩家名字
+		playerId    String   //玩家id
+		gender      byte  //性别
+		online      byte  //是否在线
+		proId       byte //职业id
+		level		byte //等级
+	}
+	
+	----------添加一个玩家-------
+	C2G_AddOnePlayer = Friedn_Message_Begin+3
+	groupType  byte  	//分组类型 4、临时好友 3、好友 2、仇人 1、黑名单
+	playerName  String  //玩家名字
+	
+	G2C_AddOnePlayer = Friedn_Message_Begin+4
+	groupType  byte  	//分组类型
+	playerName  String  //玩家名字
+	playerId    String   //玩家id
+	gender      byte  //性别
+	online      byte  //是否在线
+	proId       byte //职业id
+	
+	----------删除一个玩家-------
+	C2G_DeleteOnePlayer = Friedn_Message_Begin+5
+	groupType  byte  	//分组类型
+	playerName  String  //玩家名字
+	
+	G2C_DeleteOnePlayer = Friedn_Message_Begin+6
+	groupType  byte  	//分组类型
+	playerId    String   //玩家id
+	

@@ -1,0 +1,4 @@
+StatQiangHua = 14
+n1			=			result				//强化结果 1 = 成功 0=失败
+n2			=			qiangHuaLevel		// 强化等级
+s1			=			itemRefId			// 道具refId

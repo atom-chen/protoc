@@ -1,0 +1,59 @@
+﻿Mount_Message_Begin	=	1100 //聊天消息起始值
+
+
+-----聊天消息基类--------------
+Chat_Message_Begin = 1100
+Chat_Message_End   = 1199
+
+-----查询上马状态--------------------------------
+C2G_Mount_IsOnMount = Mount_Message_Begin + 1;
+
+G2C_Mount_IsOnMount = Mount_Message_Begin + 51;
+isOnMount		byte			坐骑状态(byte==1上马中,byte==0没马)
+
+
+-----查询坐骑状态--------------------------------
+C2G_Mount_List = Mount_Message_Begin + 2;
+
+G2C_Mount_List = Mount_Message_Begin + 52;
+crtMountRefId String         当前的坐骑RefId
+crtExp        long           当前的经验
+isOnMount	  byte			坐骑状态(byte==1上马中,byte==0没马)
+
+-----坐骑喂养--------------------------------
+C2G_Mount_Feed = Mount_Message_Begin + 3;
+num           int                   数量
+itemRefId	  String                  物品ID
+G2C_Mount_Feed = Mount_Message_Begin + 53;
+crtMountRefId String         当前的坐骑RefId
+crtExp        long           当前的经验
+baoJi         int            暴击 (1:没有暴击 2:2倍 3:3倍)
+
+
+----------上马下马动作请求--------------------------------
+C2G_Mount_Action = Mount_Message_Begin + 4;
+actionType      int         动作( 0:上马,1:下马)
+G2C_Mount_IsOnMount = Mount_Message_Begin + 51;
+isOnMount		int			坐骑状态(int==1上马中,int==0没马)
+
+
+
+----------坐骑任务--------------------------------
+Mount_Message_Begin + 5~7;在SectionQuest中已定义
+
+----------错误码--------------------------------
+ResultEvent	 = 1100~1199
+	// 0x8000044d=上马失败
+	// 0x8000044e=不能重复上马
+	// 0x8000044f=下马失败
+	// 0x80000450=不能重复下马
+	// 0x80000451=坐骑不存在
+	// 0x80000452=该物品不能喂养坐骑
+	// 0x80000453=参数有误
+	// 0x80000454=喂养坐骑出错
+	// 0x80000455=CD未冷却
+	// 0x80000456=战斗状态中，CD未冷却
+
+
+
+	

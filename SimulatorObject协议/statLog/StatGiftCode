@@ -1,0 +1,3 @@
+StatGiftCode	=		33					// 礼包码兑换
+s1				=			keyCode			// 礼包码
+n1				=			result			//兑换结果 0 = 失败 1 = 成功

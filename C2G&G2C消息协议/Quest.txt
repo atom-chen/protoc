@@ -1,0 +1,48 @@
+﻿QST_Message_Begin                  	=            		600             //任务系统的消息
+//-----------------------------------------------------------------------------------------------------------
+C2G_QST_GetQuestList			=      	QST_Message_Begin+1;	// 获取任务列表, 返回可接任务列表，已接任务列表
+G2C_QST_QuestAcceptedList		= 		QST_Message_Begin+2; // 已接任务列表
+	count	=   byte //任务数量, 
+	{
+		QuestId(string //每个任务id):
+		state		byte,
+		"orderNumber" 		byte
+		{
+			"number" 		: int         //杀怪数量、物品数量、对话状态（0未对话，1已对话）
+		}
+	}
+	
+G2C_QST_QuestVisibleList		= 		QST_Message_Begin+3; 	// 可接任务列表
+	count	 =   byte //任务数量,
+	QuestId  =   string //每个任务id
+	
+//-----------------------------------------------------------------------------------------------------------
+C2G_QST_QuestAccept			=			QST_Message_Begin+4;	// 接收任务
+	QuestId  =   string //任务id
+
+//-----------------------------------------------------------------------------------------------------------
+C2G_QST_QuestSubmit			= 			QST_Message_Begin+5;	// 提交任务
+	QuestId  =   string //任务id
+
+//-----------------------------------------------------------------------------------------------------------
+G2C_QST_StateUpdate			= 			QST_Message_Begin+6;	// 状态更新
+	QuestId	=	string	//任务id, 
+	state	=	byte		//状态
+
+//-----------------------------------------------------------------------------------------------------------
+G2C_QST_QuestUpdate			= 			QST_Message_Begin+7;	// 任务的进度更新
+	QuestId(string //每个任务id),
+	"orderNumber" :
+	{
+		"number" 		: int         //杀怪数量、物品数量、对话状态（0未对话，1已对话）
+	}
+	
+C2G_QST_QuestInstanceTrans  = 			QST_Message_Begin + 8
+	questId = string		任务ID
+	insId 	= string			副本ID
+	 
+C2G_COM_ActionToSucceed		= 			QST_Message_Begin + 9	//  通用协议，一个客户端操作即完成某项事件
+	eventType	=	byte
+		{1：打开仓库}
+	
+	

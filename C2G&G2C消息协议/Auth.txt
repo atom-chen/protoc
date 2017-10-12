@@ -1,0 +1,15 @@
+
+=========认证==========
+C2G_AuthEvent		= 	101			// 认证请求
+	identityId		=	String		// 账号ID
+	identityName	=	String		// 账号名称
+	timeStamp		=	Long		// 时间戳
+	sign			=	String		
+	uuid			=	String
+	qdCode1			=	int
+	qdCode2			=	int
+
+ResultEvent			= 	102
+	0x80000001		=	非法请求.md5校验失败
+	0x80000002		=	非法请求.时戳过期
+	0x80000003		=	非法请求.参数错误

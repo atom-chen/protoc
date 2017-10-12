@@ -1,0 +1,10 @@
+MeritPointStat
+statLogType	=			36
+n1			=			byte	optType			//增加或者减少   1-->Add  2-->Delete
+n2			=			byte	sourceType		//来源或者去向   
+														1-->  任务
+														2-->  功勋令牌
+														3-->  功勋奖励
+														4-->  升级爵位
+
+s3			=			int		number			// 数量

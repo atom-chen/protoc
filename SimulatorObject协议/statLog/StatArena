@@ -1,0 +1,6 @@
+StatArena:
+statLogType	=			10
+n1			=			int		rank //排名
+n2			=			int		streak//连胜次数
+n3			=			int		remainChallengeCount // 剩余挑战次数
+n4			=			int		rewardRank // 领取奖励的排名

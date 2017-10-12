@@ -1,0 +1,45 @@
+
+C2G_Character_Get		=	201		// 角色获取
+G2C_Character_Get		=	202		// 角色获取返回
+	count				=	byte	// 角色个数
+	{
+		id				=	string	// 角色ID
+		name			=	string	// 角色名称
+		level			=	int		// 角色等级
+		gender			=	byte	// 角色性别(0:不限 1:男 2 女)
+		profession		=	byte	// 角色职业(1:战士 2:法师 3:道士)
+	}
+
+C2G_Character_Create	= 	203		// 角色创建
+	gender				=	byte	// 角色性别
+	profession			=	byte	// 角色职业(1:战士 2:法师 3:道士)
+	name				=	string	// 角色名称
+G2C_Character_Get		=	202		// 角色返回
+ResultEvent				=	203		// 错误返回
+	0x80000004			=	昵称太短
+	0x80000005			=	昵称太长
+	0x80000006			=	昵称已经存在
+	0x80000007			=	已经创建角色
+	0x80000011			=	封号中
+	
+C2G_Character_Login		=	205		// 角色登陆
+	charId				=	string	// 角色ID
+	width				=	short	// 屏幕宽度
+	height				=	short	// 屏幕高度
+G2C_Character_Login		=	206		// 角色登录返回
+	charId				=	string	// 角色ID
+	propertyLength		=	short	// 属性字典长度
+	propertyDictionary	=	pd		// 属性字典
+ResultEvent				=	204		// 错误返回
+	0x80000000			=	非法参数
+	0x80000008			=	找不到角色
+	0x80000011			=	封号中
+
+C2G_Character_Delete	=	207		// 角色删除
+	charId				=	string	// 角色ID
+G2C_Character_Delete	=	208		// 角色删除返回
+	charId				=	string	// 角色ID
+ResultEvent				=	207		// 错误返回
+	0x80000008			=	找不到角色
+
+			

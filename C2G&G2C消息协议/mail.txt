@@ -1,0 +1,92 @@
+﻿// 邮件消息
+Mail_Message_Begin = 1400;
+=======================================
+邮件对象Mail：
+	// 邮件Id
+	private String mailId;
+	// 邮件标题
+	private String title
+	// 是否已读
+	private boolean isRead;//0--未读 1--已读
+	// 发送时间
+	private long time;
+	// 类型
+	private char type; //0--活动 1--公告
+	//是否有道具
+	private char ishaveReward; 0--没有，1--有
+	===========================================
+/** 请求邮件列表 */
+C2G_Mail_List = MMORPGEventDefines.Mail_Message_Begin + 1;
+返回
+G2C_Mail_List = MMORPGEventDefines.Mail_Message_Begin + 51;
+{
+	count	int		邮件个数
+	// 邮件Id
+	private String mailId;
+	// 邮件标题
+	private String title
+	// 是否已读
+	private boolean isRead;//0--未读 1--已读
+	// 发送时间
+	private long time;
+	// 类型
+	private char type; //0--活动 1--公告
+	//是否有道具
+	private char ishaveReward; 0--没有，1--有
+}	
+
+/** 邮件设置已读 */
+C2G_Mail_Read = MMORPGEventDefines.Mail_Message_Begin + 2;
+mailId string	邮件Id
+
+/** 邮件拾取事件 */
+C2G_Mail_Pickup = MMORPGEventDefines.Mail_Message_Begin + 3;
+mailId string	邮件Id
+返回
+resuleCode
+
+/** 邮件新增事件 */
+G2C_Mail_Add = MMORPGEventDefines.Mail_Message_Begin + 4;
+mails	Mail对象
+
+
+//客服邮件发送请求
+C2G_GMMail_Send = MMORPGEventDefines.Mail_Message_Begin + 5
+	
+	byte type;		//类型：1-BUG，2-投诉，3-建议，4-其它
+	string content;		//内容
+	string url;		//后台地址
+	
+C2G_Mail_Content = MMORPGEventDefines.Mail_Message_Begin + 6;
+mailId string	邮件Id
+
+G2C_Mail_Content = MMORPGEventDefines.Mail_Message_Begin + 52;
+{
+string mailId --邮件id
+String content --内容
+int yuanbao --元宝
+int bindyuanbao --绑定元宝
+int gold --金币
+string reward --json格式的字符串，代表奖励的物品
+
+int num 个数
+{
+	id				= string					//物品的唯一标示id
+	refId           = string                    //物品的refId  
+	pdCount             byte                       //属性字典的数量
+	{                                      
+	    which           =byte                   //  属性字典的类型：1 总属性， 2 洗练属性
+	    dataLenght     	= short	                //  属性字典长度
+	    PropertyDictionary						//  物品的属性字典
+	}
+}
+}
+
+C2G_Mail_Pickup_LeftTime  1407
+
+string mailId --邮件id
+
+
+G2C_Mail_Pickup_LeftTime 1453
+string mailId --邮件id 
+long lefttime 剩余时间(毫秒)

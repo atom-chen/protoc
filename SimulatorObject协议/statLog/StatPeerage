@@ -1,0 +1,4 @@
+StatPeerage:
+statLogType	=			7
+s1			=			string		peerageRefId	//爵位refId
+n1			=			int			peerageLevel	//爵位等级

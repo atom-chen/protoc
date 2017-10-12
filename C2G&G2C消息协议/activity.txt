@@ -1,0 +1,457 @@
+﻿Activity_Message_Begin	=	3300
+
+============签到活动=============
+C2G_SignIn_List		= Activity_Message_Begin + 1;
+G2C_SignIn_List 	= Activity_Message_Begin + 2;
+	crtCalender		= 	string	//当前时间(年月日20140101)
+	daysOfMonth		=	byte	//当前月的天数
+	canNormalSign	=	byte	//能否可以签到(0:不可以,1:可以)
+	canMakeupSign	=	byte	//能否可以补签(0:不可以,1:可以)
+	count			=	byte	//签到次数
+	{
+		day			=	byte	//已经签到的某一天的几号
+	}
+	number			=	short
+	{
+		refId		=	奖励refId
+		state		=	领取状态(0:未领取,1:已领取 2:可领取而未领取)
+	}
+
+	
+C2G_SignIn			= 	Activity_Message_Begin + 3;
+	signType		=	byte	//签到类型(1:正常签到,2:补签)
+
+G2C_SignIn			= 	Activity_Message_Begin + 4;
+	day				= byte(0:正常签到返回，其他数值是补签某一个的几号)
+C2G_getReward		=	Activity_Message_Begin + 5;
+	type			=	byte	// 2:签到 3:在线时长 4:每日累计时长
+	refId			=	string	
+G2C_getReward		=	Activity_Message_Begin + 6;
+	refId			=	string	//所领取奖励的refId
+	
+G2C_CangetReward	=	Activity_Message_Begin + 7;
+	type			=	byte	//2:签到 5：进阶 6：升级
+	refId			=	string	
+	
+============在线时长活动=============
+G2C_OT_ShowOnLineTimer		=		Activity_Message_Begin	+ 8；
+	refId					=		string	
+	remainTime				=		int	//本次倒计时剩余时间
+	state					=		byte//是否可以领取奖励 0:不可以 1：可以
+	
+C2G_OT_ShowOnLineTimer		=		Activity_Message_Begin + 90
+==================七日登录===============================
+C2G_SevenLogin_ReceiveState = Activity_Message_Begin + 9,
+G2C_SevenLogin_ReceiveState = Activity_Message_Begin + 10,
+		duration				= string			 // 起始日期- 结束日期
+		whichDay				= int  				//今天是哪一天		
+		count{					short
+			stage			=	string				// 阶段
+			status			=	byte				//领取状态 0 = 不能领取 1 = 已领取 2 = 可领取 3 =已过期
+			itemCount{			short
+				itemRefId	=	string				//道具refid
+				number		=	int					//数量
+				bind		=	byte				//绑定状态  1=绑定 0 = 非绑定	
+			}	
+		}
+G2C_SevenLogin_HaveReceive = Activity_Message_Begin + 11,
+	type					= byte // 1 = 今日可领，弹出界面 0 = 不可领，不弹出界面
+C2G_SevenLogin_HadReceive = Activity_Message_Begin + 12
+	stage					= string;
+
+C2G_SevenLogin_ReReceive = Activity_Message_Begin + 94
+	stage					= string;
+
+C2G_SevenLogin_HaveReceive = Activity_Message_Begin + 47 //登录请求今天是否有奖，是否弹出界面
+============坐骑、法宝、翅膀进阶奖励活动===========
+C2G_Advanced_List = Activity_Message_Begin + 15;
+G2C_Advanced_List = Activity_Message_Begin + 16;
+	count	=	short	// 坐骑
+	{
+		refId	=	string
+		state	=	byte	//0未领取 1已领取 2可领取
+	}
+	count	=	short	//翅膀
+	{
+		refId	=	string
+		state	=	byte	//0未领取 1已领取 2可领取
+	}
+	count	=	short	//法宝
+	{
+		refId	=	string
+		state	=	byte	//0未领取 1已领取 2可领取
+	}
+C2G_Advanced_GetReward 	= 	Activity_Message_Begin + 17;
+	refId 		  = string	//达到进阶条件的refId	
+=================升级奖励活动===============
+C2G_LevelUp_List		=		Activity_Message_Begin	+ 18
+G2C_LevelUp_List		=		Activity_Message_Begin 	+ 19
+	remainTime			=		int
+	count				=		short
+	{
+		refId			=		string
+		state			=		type 	//0未领取 1已领取 2可领取
+	}
+C2G_LevelUp_GetReward	=		Activity_Message_Begin  + 20
+	refId				=		string
+	
+G2C_LevelUp_ActivityOver=		Activity_Message_Begin  + 21
+	type				=		byte
+	
+=================活动管理界面===============
+G2C_Activity_ManageList =		Activity_Message_Begin + 24
+	count				=  short	// 推荐的活动的数目
+	{
+		refId			=  string	// 活动的refId	
+	}
+	count				=  short	// 其他所有活动数目
+	{
+		refId			=  string	// 活动的refId	
+	}
+=================挖宝界面===============
+C2G_Digs_Type		=  Activity_Message_Begin + 25
+	type 		= byte // 1~3 = 挖宝类型
+
+
+C2G_Digs_List		= Activity_Message_Begin + 26	// 请求仓库列表
+
+G2C_Digs_List		= Activity_Message_Begin + 27	// 返回仓库更新
+	capacity	= short				//仓库已使用容量
+	count{
+	    id          = string // 物品唯一标示id
+	    index       = short //索引位置	
+	    itemRefId   = string // 物品的refId
+	    number	= int	// 该格子上的物品数量
+	    bindStatus	= byte	//绑定状态
+	}
+	
+G2C_Digs_Update		= Activity_Message_Begin + 28	// 返回仓库更新
+	capacity	= short				//仓库已使用容量
+	type		= byte	//2= 提取删除 1 = 增加 
+	count{
+	    id          = string // 物品唯一标示id
+	    index       = short //索引位置	
+	    itemRefId   = string // 物品的refId
+	    number	= int	// 该格子上的物品数量
+	    bindStatus	= byte	//绑定状态
+	}
+
+
+C2G_Digs_Switch		= Activity_Message_Begin + 29
+	index		= short		// -1 = 全部提取， 
+
+G2C_Digs_Result		= Activity_Message_Begin + 74
+	count{	  		= short;
+	    itemRefId   = string // 物品的refId
+	    number		= int	// 该格子上的物品数量
+	}
+	
+==================限时冲榜================
+G2C_LimitTimeRank_TimeOver	=	Activity_Message_Begin + 30
+				openState	=	byte	
+C2G_LimitTimeRank_List		=	Activity_Message_Begin + 31
+			SortBoardType	=		byte	
+G2C_LimitTimeRank_List		=	Activity_Message_Begin + 32
+			beginTime	=		string
+				endTime		=		string
+			firstRankName	=		string
+				myRank		=		int
+				count		=		short
+				{
+					refId	=		string
+					state	=		byte
+				}
+
+C2G_LimitTimeRank_GetReward	=	Activity_Message_Begin + 33
+				refId		=		string
+	
+G2C_LimitTimeRank_GetReward =	Activity_Message_Begin	+ 34
+				refId		=		string
+C2G_LimitTimeRank_Version	=	Activity_Message_Begin + 35
+			limitRankType	=	byte
+G2C_LimitTimeRank_Version	=	Activity_Message_Begin + 36
+			limitRankType	=	byte
+			version			=	int
+====================首冲礼包======================
+whichActivity = 1
+C2G_OA_FirstRechargeGiftReceive		=	Activity_Message_Begin + 37	//  领取首冲
+C2G_OA_FirstRechargeGiftList		=	Activity_Message_Begin + 38	//  首冲奖励列表
+G2C_OA_FirstRechargeGiftList		=	Activity_Message_Begin + 39	//  首冲奖励列表
+	status				=	byte 				// 状态 0 = 从未充值 1 = 已充值，未领取 2= 已充值，已领取
+	worth				=	int				//价值多少
+	itemSize			=	short				//奖励道具数量
+		{
+			itemRefId	=	string				//道具refid
+			number		=	int				//数量
+			bind		=	byte				//绑定状态  1=绑定 0 = 非绑定	
+		}
+==================总充值礼包======================
+whichActivity = 2
+C2G_OA_TotalRechargeGiftListEvent	= 	Activity_Message_Begin + 40	// 请求充值礼包详细状态
+G2C_OA_TotalRechargeGiftListEvent	= 	Activity_Message_Begin + 41	// 返回充值礼包详细状态
+	leaveTime			=	long				//剩余时间
+	beginTime			=	long				//活动开始时间
+	endTime				=	long				//活动结束时间
+	crtValue			=	int				//当前已充值数
+	count{					short
+		stage			=	string				// 阶段 
+		condValue		=	int					//多少元宝
+		status			=	byte				//领取状态 0 = 不能领取 1 = 已领取 2 = 可领取
+		itemCount{			short
+			itemRefId	=	string				//道具refid
+			number		=	int				//数量
+			bind		=	byte				//绑定状态  1=绑定 0 = 非绑定	
+		}	
+	}
+		
+C2G_OA_TotalRechargeGiftReceiveEvent	=	Activity_Message_Begin + 42	//领取充值礼包
+	stage				=	string	//哪个阶段
+
+
+
+====================每日充值============================================================
+C2G_OA_EveryRechargeGiftListEvent	=	Activity_Message_Begin + 44	//请求每日充值礼包详细状态
+G2C_OA_EveryRechargeGiftListEvent	= 	Activity_Message_Begin + 45	//返回每日充值礼包详细状态
+	status				=	byte				//状态 0 = 今天未充值 1 = 今日已充值，未领取  2 = 今日已充值，已领取
+	worth				=	int					//价值多少
+	itemSize			=	short				//奖励道具数量
+		{
+			itemRefId	=	string				//道具refid
+			number		=	int				//数量
+			bind		=	byte				//绑定状态  1=绑定 0 = 非绑定	
+		}
+C2G_OA_EveryRechargeGiftReceiveEvent	= 	Activity_Message_Begin + 46	//领取奖励
+
+
+QA ---------------------47已用，不要再用 ---------------------------
+====================竞技场===============================================================
+C2G_Arena_CanReceive		=	Activity_Message_Begin + 97,	//请求是否有领取
+
+G2C_Arena_CanReceive		=	Activity_Message_Begin + 98,	//是否有领取
+	canReceive	=	byte	//0：不可领取，1：可领取
+
+C2G_Arena_ShowArenaView					= Activity_Message_Begin + 48,	//打开界面，请求所有数据
+
+G2C_Arena_ShowArenaView							= Activity_Message_Begin + 49,
+	noticeType	=	byte		//消息类型：1、玩家a连胜15次 2、玩家a击败玩家b成为第1名 3、玩家a在1小时内排名上升（x名）最快
+	//如果noticeType==0, 则表示没有公告消息
+	
+	//如果noticeType==1
+	{
+		playerName	= string	//玩家名字
+	}
+	//如果noticeType==2
+	{
+		playerAName	=	string	//玩家A的名字，玩家B的名字
+		playerBName	= string	
+	}
+	//如果noticeType==3
+	{
+		playerName	=	string	//玩家名字
+		raiseRank		=	int			//上升名次
+	}
+	
+	// 挑战对象 
+	count	=	byte						//人数
+	{
+		profession			=	byte	//职业
+		gender			=	byte	//性别
+		rank				=	int		//排名
+		name				=	string	//名字
+		level				=	short		//等级
+		fighting			= 	int		//战斗力
+	}
+	
+	count	=	byte						//记录数
+	{
+		isAction			=	byte	//0：主动挑战 1：被动挑战
+		targetName		=	string//挑战目标名字
+		fightingResult=	byte	//0：战败 1：战胜
+		rankChange		= int		//>0：上升rankChange名 =0：不变 <0：下降rankChange名
+	}
+	
+	rank					=	int		//排名
+	victoryCnt				=	short		//连胜次数
+	leftChallengeCnt		=	short	//剩余挑战次数
+	
+	rewardRank			=	int	
+	receiveRewardTime	=	int//领取奖品剩余时间
+	gold					=	int		//金币
+	exploit				= int		//功勋
+	cdTime				=	int	//挑战cd时间
+
+
+G2C_Arena_UpadateNotice					= Activity_Message_Begin + 50,
+	noticeType	=	byte		//消息类型：1、玩家a连胜15次 2、玩家a击败玩家b成为第1名 3、玩家a在1小时内排名上升（x名）最快
+	//如果noticeType==1
+	{
+		playerName	= string	//玩家名字
+	}
+	//如果noticeType==2
+	{
+		playerAName	=	string	//玩家A的名字，玩家B的名字
+		playerBName	= string	
+	}
+	//如果noticeType==3
+	{
+		playerName	=	string	//玩家名字
+		raiseRank		=	int			//上升名次
+	}
+	
+G2C_Arena_UpadateChallengeTarget		= Activity_Message_Begin + 51,
+	count	=	byte						//人数
+	{
+		profession	=	byte	//职业
+		gender			=	byte	//性别
+		rank				=	int		//排名
+		name				=	string//名字
+		level				=	short		//等级
+		fighting			= int	//战斗力
+	}
+
+		
+G2C_Arena_UpadateFightRecord			= Activity_Message_Begin + 52,
+	isAction			=	byte	//0：主动挑战 1：被动挑战
+	targetName		=	string//挑战目标名字
+	fightingResult=	byte	//0：战败 1：战胜
+	rankChange		= int		//>0：上升rankChange名 =0：不变 <0：下降rankChange名
+
+G2C_Arena_UpadateHeroInfo				= Activity_Message_Begin + 53,
+	rank					=	int		//排名
+	victoryCnt		=	short		//连胜次数
+	leftChallengeCnt	=	short	//剩余挑战次数
+	
+C2G_Arena_ReceiveReward					= Activity_Message_Begin + 54,	//领取奖励
+
+G2C_Arena_UpdateReceiveRewardTime					= Activity_Message_Begin + 55,	
+	rewardRank			=	int	
+	receiveRewardTime	=	int		//领取奖品剩余时间
+	gold					=	int		//金币
+	exploit				= int		//功勋
+
+
+C2G_Arena_Challenge						= Activity_Message_Begin + 56,		//挑战目标
+	rank						=int		//角色名词
+
+	
+G2C_Arena_UpdateChallengeCDTime						= Activity_Message_Begin + 57,
+	cdTime				=	int	//挑战cd时间	
+	
+C2G_Ladder_Select						=	Activity_Message_Begin + 58
+				
+G2C_Ladder_Select						=	Activity_Message_Begin + 59
+		count				=	byte
+	{
+			rank		=	byte
+			gender	= byte
+			name		=	string
+			profession	=	byte
+			level		=	short
+			fightValue	=	int
+			unionName	=	string
+			trend		=	byte	//0:持平 1：上升 2：下降
+	
+	}
+C2G_Arena_Challenge_Award		= Activity_Message_Begin + 93
+
+G2C_Arena_Challenge						= Activity_Message_Begin + 91		
+		fightingResult = byte //0：胜 1：败
+		gold					=	int		//金币
+		exploit				= int		//功勋
+		hero					=	int		//英雄的随机战力
+		otherHero			= int		//对手的随机战力
+		otherHeroPropertyLength = int // 属性字典长度 
+		otherHeroPropertyDictionary = pd // 属性字典 
+		
+C2G_Arena_ClearCDTime					=	Activity_Message_Begin + 92
+====================（游戏内容）活动关闭与开启通用协议,游戏活动不要用=========
+G2C_OA_CanReceiveEvent			=	Activity_Message_Begin  + 60
+	count{				= 	short
+		whichActivity		= 	short // 哪个活动可以领取奖励 1 = 首充 2 = 充值 3 = 每日充值 4 = 累计消费
+	}
+G2C_OA_ClosedActivityEvent		=	Activity_Message_Begin  + 61
+	whichActivity			=	short	//关闭哪个活动	1 = 首充 2 = 充值 3 = 每日充值 4 = 累计消费
+G2C_OA_OpenedActivityEvent		=	Activity_Message_Begin  + 62
+	whichActivity			=	short	//开启哪个活动	1 = 首充 2 = 充值 3 = 每日充值 4 = 累计消费
+G2C_OA_OpeningActivityEvent		=	Activity_Message_Begin  + 63
+	count{				=	short			1 = 首充 2 = 充值 3 = 每日充值 4 = 累计消费
+		whichActivity		= 	short // 哪些活动正开放中
+	}
+C2G_OA_CanReceiveEvent			=	Activity_Message_Begin  + 83
+	
+
+==================周充值消费礼包======================
+C2G_OA_WeekConsumeGiftListEvent	= 	Activity_Message_Begin + 71	// 请求周消费礼包详细状态
+G2C_OA_WeekConsumeGiftListEvent	= 	Activity_Message_Begin + 72	// 返回周消费礼包详细状态
+	leaveTime			=	long				//剩余时间
+	beginTime			=	long				//活动开始时间
+	endTime				=	long				//活动结束时间
+	WeekStartEndTime		string			// 本周起始结束时间	
+	crtWeekValue			=	int				//当前已充值数	
+	count{					short
+		stage			=	string				// 阶段 
+		condValue		=	int					//多少元宝
+		worth			=	int					//价值多少元宝
+		status			=	byte				//领取状态 0 = 不能领取 1 = 已领取 2 = 可领取
+		itemCount{			short
+			itemRefId	=	string				//道具refid
+			number		=	int					//数量
+			bind		=	byte				//绑定状态  1=绑定 0 = 非绑定	
+		}	
+	}
+C2G_OA_WeekConsumeGiftReceiveEvent	=	Activity_Message_Begin + 73	//领取充值礼包
+	stage				=	string	//哪个阶段
+------------------------- 74 已用-------------------
+
+========================遮天基金===========================
+C2G_Fund_ApplyVersionByType = Activity_Message_Begin + 75	//请求基金类型版本号
+	fundType             byte//基金类型
+G2C_Fund_ReturnVersion = Activity_Message_Begin + 76	//返回基金类型版本号
+	fundType             byte//基金类型
+	version              int //版本号
+C2G_Fund_FundGetRewardList = Activity_Message_Begin + 77	//请求基金领奖列表
+	fundType             byte//基金类型
+G2C_Fund_FundGetRewardList = Activity_Message_Begin + 78	//返回基金领奖列表
+	fundType             byte//基金类型
+	count{                int // 当前第几天 
+		status			byte  //领取状态0表示未领取  1表示已经领取 2过期
+		
+	}
+C2G_Fund_BuyWhichFund = Activity_Message_Begin + 79	//请求购买哪个基金
+	fundType             byte//基金类型
+G2C_Fund_BuyWhichFund = Activity_Message_Begin + 80	//购买结果
+	fundType             byte//基金类型
+	result       byte//成功失败 0失败 1成功 
+C2G_Fund_GetReward = Activity_Message_Begin + 81	//请求领取基金奖励
+	fundType             byte//基金类型
+	day                  int//领取第几天
+G2C_Fund_GetReward = Activity_Message_Begin + 82	//领取结果
+	fundType             byte//基金类型
+	result       		byte//成功失败 0失败 1成功 
+
+========================= 83 已用====================	
+=========================85已用=====================	
+C2G_Fund_IsReceive = MGEventDefines.Activity_Message_Begin + 86;// 请求玩家基金领取状态
+G2C_Fund_IsReceive = MGEventDefines.Activity_Message_Begin + 87;// 返回玩家基金领取状态
+count                  int//基金数量(如果为0表示没有基金)
+ {
+   type                byte//基金类型
+   status              byte//基金状态（1：不可领取   0：可领取）
+ }
+
+C2G_Activity_CanRecieve = MGEventDefines.Activity_Message_Begin + 95;// 是否可以领奖
+	type			=		byte	//类型 5，进阶奖励、6，升级奖励、7限时冲榜
+G2C_Activity_CanRecieve = MGEventDefines.Activity_Message_Begin + 96;
+	type			=		byte	//类型 5，进阶奖励、6，升级奖励、7限时冲榜
+	result			=		byte 	0 不可以，1，可以
+
+=============================怪物入侵=======================
+C2G_MonsterIntrusion_EnterMap = MGEventDefines.Scene_Activity_Message_Begin + 30;
+sceneRefId             =   string            //场景id
+C2G_MonsterIntrusion_LeaveMap = MGEventDefines.Scene_Activity_Message_Begin + 31;
+sceneRefId             =   string            //场景id
+G2C_MonsterIntrusion_ContinuTime = MGEventDefines.Scene_Activity_Message_Begin + 32;
+continuTime            =   long              //持续时间
+G2C_MonsterIntrusion_EnterMap = MGEventDefines.Scene_Activity_Message_Begin + 33;
+continuTime            =   long              //持续时间
+C2G_MonsterIntrusion_ContinuTime = MGEventDefines.Scene_Activity_Message_Begin + 34;

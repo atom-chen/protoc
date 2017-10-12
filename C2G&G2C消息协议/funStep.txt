@@ -1,0 +1,11 @@
+C2G_FunStep_Request  4201
+
+C2G_FunStep_Complete_Request 4202 //新手完成的步骤
+String stepId
+
+G2C_FunStepList_Response  4210  //新手完成的步骤列表
+
+byte num(数量)
+{
+String stepId
+}

@@ -1,0 +1,20 @@
+Wing_Message_Begin = 2600;   //翅膀的消息的起始
+//-----------------------------------------------------------------------------------------------------------
+
+C2G_Wing_RequestNowWing		=   	Wing_Message_Begin+1;	// 获取当前翅膀（上线时请求）
+
+G2C_Wing_RequestNowWing		=   	Wing_Message_Begin+2;	// 返回当前翅膀, 返回当期翅膀RefId
+	WingRefId = String // 当期翅膀RefId
+	exp		  = long	// 当前翅膀的经验
+
+C2G_Wing_WingLevelUp		=   	Wing_Message_Begin+3;	// 翅膀升级请求
+	itemRefId =	string // 使用物品的refId
+	itemNum = byte 		// 使用物品的数量
+	
+
+G2C_Wing_WingLevelUp		=		Wing_Message_Begin+4;   // 升级成功返回
+	crtWingRefId 		=	String  // 当期翅膀RefId
+	critMultipleType	=	byte	// 暴击倍数类型		// (1:没有暴击 2:2倍 3:3倍)
+	exp					=	long	//当前的经验值
+
+//消息位5、6、7位翅膀任务，在SectionQuet.txt已用

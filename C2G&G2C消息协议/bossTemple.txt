@@ -1,0 +1,13 @@
+BossTemple_Message_Begin = 3700
+
+--请求进入付费地宫
+C2G_BossTemple_Enter =  BossTemple_Message_Begin + 31,	
+sceneRefId     string   --请求进入的地宫ID (如S001)
+--进入成功返回
+G2C_BossTemple_Enter =  BossTemple_Message_Begin + 32,	
+
+--请求离开付费地宫
+C2G_BossTemple_Exit =  BossTemple_Message_Begin + 33,	
+
+--成功离开返回
+G2C_BossTemple_Exit =  BossTemple_Message_Begin + 34,	

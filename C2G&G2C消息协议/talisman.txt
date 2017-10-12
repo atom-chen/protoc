@@ -1,0 +1,86 @@
+Talisman_Message_Begin	=2700 //������Ϣ��ʼֵ
+//========================== 旧协议 =======================
+C2G_Talisman_List    = Talisman_Message_Begin + 1	//法宝列表	
+G2C_Talisman_List    = Talisman_Message_Begin + 2	//返回法宝列表
+   isActive		= byte	//法宝开启状态 0未激活 1激活状态
+   count		= short
+	{
+	 index	         = short
+	 state		 = byte				//0 δ��ȡ  1Ϊ��ȡδ����  2 Ϊ�Ѽ���
+	 talisRefId	 = string
+	 tailManLevel	 = byte	
+	}
+
+C2G_Talisman_Operate     = Talisman_Message_Begin + 3	//法宝操作
+      type             = byte				//1获取 2 激活 3升级 4 取消激活 
+      index	       = short
+
+G2C_Talisman_Operate     = Talisman_Message_Begin + 4	//法宝操作返回
+      type             = byte				//1获取 2 激活 3升级 4 取消激活 
+     index	       = short
+      ret	       = byte				//1 成功， 0失败
+     tailManLevel     = byte	
+
+
+// =============== 法宝任务5~8   在sectionQuest已经使用
+
+//========================== 2014/5/17 新协议 =======================	
+C2G_Talisman_List    = Talisman_Message_Begin + 1	//法宝列表	
+G2C_Talisman_List    = Talisman_Message_Begin + 2	//返回法宝列表
+  
+   isOpen		= byte	//法宝开启状态  0未开启 1开启状态
+   tailManLevel	 = byte	//所有的法宝的等级 = 心法的等级,这里是心法等级 ，也是所有法宝等级
+   count		= short
+	{
+	 index	     = short
+	 state		 = byte				//0 未获取  1 未激活 2 激活
+	 talisRefId	 = string	
+	}
+--------------------------------------------------------	
+C2G_Talisman_Operate    = Talisman_Message_Begin + 3	//法宝操作
+      type              = byte				//1获取 2 激活 3 取消激活 
+      index	     	    = short
+
+G2C_Talisman_Operate    = Talisman_Message_Begin + 4	//法宝操作返回
+     type               = byte				//1获取 2 激活 3取消激活 
+     index	      	    = short
+      ret	      	    = byte				//1 成功， 0失败
+------------------------------------------------------------       
+C2G_Citta_LevelUp       = Talisman_Message_Begin + 11		//心法升级
+G2C_Citta_LevelUp       = Talisman_Message_Begin + 12		//心法升级
+	ret 			    = byte  //1 成功， 0失败
+------------------------------------------------------------
+C2G_Talisman_Reward		= Talisman_Message_Begin + 13		//被动法宝领取
+	type				= byte	//1=宝箱  2 = 金币  3 = 进阶石 4 = 经验
+G2C_Talisman_Reward		= Talisman_Message_Begin + 14		//被动法宝领取
+	ret					= byte	//1 成功， 0失败
+	
+C2G_Talisman_GetReward		= Talisman_Message_Begin + 15		//获取被动法宝奖励数据
+G2C_Talisman_GetReward		= Talisman_Message_Begin + 16		//获取法宝奖励数据
+	totalbaoxiang			=	int	
+	baoxiang				=	int
+	totalgold				=	int
+	gold					= 	int
+	totalstone				=	int
+	stone					=   int
+	totalexp				=	int
+	exp						=	int
+------------------------------------------------------------		
+C2G_Talisman_Statistics		= Talisman_Message_Begin + 9	//法宝统计数据
+G2C_Talisman_Statistics		= Talisman_Message_Begin + 10	//法宝统计数据
+	count{					= short
+		type				=	byte		//何种
+		value				=	long		// 总值
+	}
+=== 统计数据 type =========
+1	=	增加攻速xxx
+2	=	增加移动速度xxx
+3 	=	累计发放金币数
+4	=	额外经验获得
+5	=	累计领取宝箱数
+6	=	累计获得升阶石
+7	=	麻痹触发次数
+8	=	抵消伤害总数
+9	=	复活次数
+10	=	累计发送消息数
+	

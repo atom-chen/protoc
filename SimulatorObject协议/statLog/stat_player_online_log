@@ -1,0 +1,9 @@
+total		= 	当前服务器缓存的总玩家数量
+total_inc	=	一分钟内增加的玩家数量
+online		=	当前服务器在线玩家数量
+connected	=	一分钟内连接成功的玩家数
+connected_ips = 一分钟内连接的ip数
+logged		  =	一分钟内登录次数
+logged		  = 一分钟内登录的玩家数
+entered		  = 一分钟内成功进入游戏的次数
+entered		  =	一分钟内成功进入游戏的玩家数		

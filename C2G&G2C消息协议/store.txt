@@ -1,0 +1,97 @@
+﻿
+Shop_Message_Begin			==		2800       // 商店消息起始
+//-----------------------------------------------------------------------------------------------------------
+
+C2G_Store_VersonReq			== 		Shop_Message_Begin + 1			// 请求版本号
+
+G2C_Store_VersonResp		== 		Shop_Message_Begin + 2			// 版本号返回
+	int			版本号
+	
+C2G_Store_ItemListReq		== 		Shop_Message_Begin + 3			// 请求列表
+
+G2C_Store_ItemListResp		== 		Shop_Message_Begin + 4			// 列表返回		
+	count	[					int
+		refId					String
+		storeType				String
+		itemId					String	
+		itemSellType			byte
+		unbindedGold			int
+		bindedGold				int
+		unbindOriginalPrice  	int
+		bindOriginalPrice		int
+		itemLimitType			byte
+		itemLimitNum			int
+		number					int
+		storeLimitTime			String
+	]
+		
+C2G_Store_LimitItemReq		==		Shop_Message_Begin + 5			// 限购物品请求
+		StoreType				string//商店：商店Id   商城："mall"
+	
+G2C_Store_LimitItemResp		==		Shop_Message_Begin + 6			// 限购物品返回
+    	StoreType				string//商店：商店Id   商城："mall"
+    			商城解析类型
+	count	[					int
+		refId					String
+		storeType				String
+		itemId					String	
+		ItemLimitType			byte
+		unbindedGold			int
+		bindedGold				int
+		unbindOriginalPrice  	int
+		bindOriginalPrice		int
+		itemLimitType			byte
+		itemLimitNum			int
+		number					int
+		storeLimitTime			String
+	]
+	
+	    		商店解析类型
+	count	[					int
+		refId					String
+		storeType				String
+		itemId					String	
+		ItemLimitType			byte
+		unbindedGold			int
+		bindedGold				int
+		Gold				  	int
+		itemLimitType			byte
+		itemLimitNum			int
+		number					int
+	]
+
+C2G_Store_BuyItemReq			==		Shop_Message_Begin + 7			// 购买限购物品请求
+		shopId					string//商店：商店Id   商城："mall" 天天打折扣："discount"
+		mall ：
+				itemRefId		String
+				count			int
+		discount:
+				itemRefId 		String
+				count 			int
+		shop：
+				NpcId			String
+				itemRefId		String
+				count			int
+
+G2C_Store_BuyItemResp		==		Shop_Message_Begin + 8			// 购买限购物品返回
+	Result			byte 0为失败 1为成功 2为打折商品卖完了或者数目不足
+=====================天天打折扣活动==========
+C2G_Discount_GetShopList			==	Shop_Message_Begin  + 9 //请求获取打折商店列表
+G2C_Discount_GetShopList		==	Shop_Message_Begin  + 10 //返回打折商店列表
+	leftTime                long//活动剩余多少时间 0表示没有开启
+	count{				 short//有多少个商品 如果没有开启，返回为0
+		refId           String//商品映射id
+		leftNumber       short//全服限购剩余数目
+		personLeftNumber       short//个人限购剩余数目
+	}
+	
+G2C_Discount_BeginOrEndNotify	==	Shop_Message_Begin + 11;
+	type				==			byte	// 0 未开启或结束，1，开启
+
+C2G_ExchangeCode == Shop_Message_Begin + 12;
+	code			 ==    string //兑换码
+  		
+G2C_ExchangeCode ==  Shop_Message_Begin + 13;
+	type			==    byte  //  0兑换失败，1兑换成功
+	
+	

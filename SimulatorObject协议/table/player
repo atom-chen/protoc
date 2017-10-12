@@ -1,0 +1,166 @@
+player:
+id				=				string
+identityId		=				stirng
+identityName	=				string
+name			=				string
+propertyData	=				byte[]
+itemBagData		=				byte[]
+questData		=				byte[]
+equipData		=				byte[]
+skillData		=				byte[]
+dailyQuestData	=				byte[]
+mountData		=				byte[]
+wingData		=				byte[]
+peerageData		=				byte[]
+
+	-----propertyData:
+		propertyDictionary	=	byte[]
+	
+	-----itemBagData
+		version				=			int				//当前版本
+		itemBagCapacity		=			int				//背包容量
+		itemSlotNumber		=			int				//背包目前已使用的容量
+		isFirstPutItemToBagValue=		int				//背包放入物品的第一次是否已经没了
+			
+		if (!itemBagSlot.isEmpty()){					
+			itemId			=			string			//道具唯一标识id
+			slotIndex		=			int				//道具在的格子位置
+			refId			=			string			//道具refId
+			number			=			int
+			bindStatus		=			byte	
+		
+			if(!item.isNonPropertyItem())
+			{
+				mark				=		byte
+				
+				itemPropertiesLength=		int
+				itemProperties		=		byte[]
+				
+				itemType			=		byte
+				if(itemType	== 1)
+				{
+					washPropertiesLength=		int
+					washProperties		=		byte[]
+				}
+				attachPropertiesLength=		int
+				attachProperties	=		byte[]
+				
+			}else{
+				mark				=		byte
+			}
+			}
+			
+	-----questData:
+		version				=			int
+		refId				=			string
+		questState			=			int
+		
+		if(qeustState == 4)
+		{
+			questCourseItemListSize		=		int
+			orderType					=		byte
+			
+			if(orderType == 4)
+			{
+				courseNumber	=	short
+			}
+			
+			if(orderType == 1)
+			{
+				courseNumber	=	short
+			}
+			
+			if(orderType == 2)
+			{
+				courseNumber	=	short
+			}
+			
+		}
+	
+	-----equipData:
+		version				=			int
+		count				=			int
+		{
+			itemId			=			string
+			bodyId			=			byte
+			position		=			byte
+			refId			=			string
+			bindStatus		=			byte
+		}
+		
+		if(!item.isNonPropertyItem()){
+			mark				=		byte
+			
+			itemPropertiesLength=		int
+			itemProperties		=		byte[]
+			washPropertiesLength=		int
+			washProperties		=		byte[]
+			attachPropertiesLength=		int
+			attachProperties	=		byte[]
+				
+		}else{
+			mark				=		byte
+		}
+	
+	
+	-----skillData:
+			version			=			int
+		learnedSkillsSize	=			int
+			{
+				id			=			string
+				level		=			int
+				exp			=			int
+				refId		=			string
+			}
+		shortcutSkillsSize	=			int
+			{
+				slotId		=			int
+				skillRefId	=			string
+			}
+	
+	-----dailyQuestData:
+		version			=			int
+		questRefId		=			string
+		questState		=			int
+		questNowRing	=			int
+		startLevel		=			int
+		randomOrderNum	=			int
+		
+		//备注:questState=4 下列关于	dailyQuestData数据才会有。建议看代码：DailyQuestPersistenceReadWrite.java
+			size		=		int
+			{
+				orderType	=	byte
+					if(orderType == 4){//采集
+						courseNumber = short
+					}
+					
+					if(orderType == 1){// 杀怪
+						courseNumber = short
+					}
+					
+					if(orderType == 2){// 杀怪掠夺任务
+						courseNumber = short
+					}
+					
+					if(orderType == 3){// 杀怪
+						completed = boolean
+					}
+			}
+	
+	-----mountData:
+		version			=			int
+		exp				=			long
+		crtRefId		=			string
+		state			=			byte		
+	
+	
+	-----wingData:
+		wingId			=			string
+	
+	-----peerageData:
+		version			=			int
+		crtPeerageRefId	=			string
+		dateTime		=			string
+		merit			=			int
+	
+	

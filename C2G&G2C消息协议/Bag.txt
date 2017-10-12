@@ -1,0 +1,93 @@
+﻿Bag_Message_Begin	=	800 //背包消息起始值
+
+C2G_Bag_Capacity			= Bag_Message_Begin+1		//背包容量请求	
+G2C_Bag_Capacity			= Bag_Message_Begin+2 		//背包容量返回
+	maxCap 			        = short				         //背包最大容量
+	curCap				    = short				        //背包已开启容量（格子数）
+------------------------------------------------------------------------
+	
+C2G_Item_List				= Bag_Message_Begin+3		//物品列表请求 
+G2C_Item_List				= Bag_Message_Begin+4		//物品列表返回	
+	capacity 		     	= short				    //背包容量
+	itemCount 				= short				    //物品数量，接下来为各个物品的数据段
+	{
+		id				= string					//物品的唯一标示id
+		gridId 		    = short				        //物品的gridId
+        refId           = string                    //物品的refId  
+        pdCount             byte                       //属性字典的数量
+        {                                      
+            which           =byte                   //  属性字典的类型：1 总属性， 2 洗练属性
+            dataLenght     	= int	                //  属性字典长度
+            PropertyDictionary						//  物品的属性字典
+        }
+	}
+------------------------------------------------------------------------	
+G2C_Item_Update				= Bag_Message_Begin + 8 //物品更新返回
+	type 					= char                  //更新类型：
+                                                    // 1 增加：在一个未使用的格子里放置物品  
+                                                    // 2 删除：将一个放置了物品的格子清空
+                                                    // 3 改动：一个格子里放置的物品的属性发生变化（如堆叠数量，绑定状态等）
+	itemCount 		        = short				    //更新的物品数，接下来为各个物品的数据段
+        id                  = string			    //物品的唯一标示id
+		gridId 		   		= short				    //物品的gridId
+        refId           	= string                //物品的refId
+        pdCount             = byte                        //属性字典的数量
+        {                                      
+            which           = byte                   //  属性字典的类型：1 总属性， 2 洗练属性
+            dataLenght     	= int	                //  属性字典长度
+            PropertyDictionary						//  物品的属性字典
+        }
+
+C2G_Item_Use				= Bag_Message_Begin+9  		//物品使用请求	
+	gridId 					= short						//物品格子ID
+    count                   = short                     //使用数量
+------------------------------------------------------------------------
+
+C2G_Item_SoltUnLock			= Bag_Message_Begin+11 		//解锁格请求
+G2C_Item_SoltUnLock			= Bag_Message_Begin+12 		//解锁格返回
+	remainMins 			    = int				        //解锁剩余分钟（依靠累积在线时间自动开启下个盒子）
+------------------------------------------------------------------------	
+
+C2G_Item_Sell				= Bag_Message_Begin+20		//物品出售请求
+	gridId 				    = short 				    //物品格子ID
+	count 				    = short                     //出售数量
+    
+C2G_Item_Batch_Sell		= Bag_Message_Begin+21		    //物品批量出售请求
+    num                     =   short                   //出售的物品种类数量
+        gridId 				    = short 				    //物品格子ID
+        count 				    = short                     //出售数量
+------------------------------------------------------------------------
+	
+
+------------------------------------------------------------------------
+
+C2G_Item_Drop				= Bag_Message_Begin+13  		//物品丢弃	
+	gridId 					= short						    //物品格子ID
+------------------------------------------------------------------------
+
+C2G_Item_Add				= Bag_Message_Begin+14  		//物品增加	
+	refId 					= string					    //物品Refid
+	number					= short						    //物品数量				
+------------------------------------------------------------------------
+	
+	
+C2G_Item_Info				= Bag_Message_Begin+6		//物品信息请求 
+	playerId 					= string					    //玩家id
+	itemId					= string						    //物品id
+G2C_Item_Info				= Bag_Message_Begin+56		//物品信息返回	
+		id				= string					//物品的唯一标示id
+		gridId 		    = short				        //物品的gridId
+        refId           = string                    //物品的refId  
+        pdCount             byte                       //属性字典的数量
+        {                                      
+            which           =byte                   //  属性字典的类型：1 总属性， 2 洗练属性
+            dataLenght     	= int	                //  属性字典长度
+            PropertyDictionary						//  物品的属性字典
+        }
+------------------------------------------------------------------------	
+Scene_Message_Begin = 300;
+C2G_Use_TransferStone 		= Scene_Message_Begin + 74		//使用传送石传送
+	gridId					= short							//传送石所在格子
+	targetScene				= String						//传送场景id
+	transferInId   			= int							//传送入口id
+	

@@ -1,0 +1,5 @@
+StatMoney = 12
+n1			=			optType				// 操作类型  1 = 增加  2 = 减少（消费）
+n2			=			currency			// 单位 1=金币 2 = 元宝 3 = 绑定元宝
+n3			=			number				// 本次操作涉及的货币数
+n4			=			crtMoney			// 当前拥有的此单位的货币数

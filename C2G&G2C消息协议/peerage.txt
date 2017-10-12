@@ -1,0 +1,15 @@
+Peerage_Message_Begin = 2300
+C2G_GetSalaryEvent 	=	Peerage_Message_Begin + 1
+G2C_GetSalaryEvent 	=	Peerage_Message_Begin + 2
+	success			=	byte	// 0 领取失败  	1 领取成功
+C2G_UpGradeEvent 	=	Peerage_Message_Begin + 3	
+G2C_UpGradeEvent	=	Peerage_Message_Begin + 4
+
+C2G_CanGetReward	=	Peerage_Message_Begin + 5
+G2C_CanGetReward	=	Peerage_Message_Begin + 6
+	canGet			=	byte	
+
+
+
+
+

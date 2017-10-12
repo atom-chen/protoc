@@ -1,0 +1,7 @@
+StatMount = 29                    // 坐骑成长记录
+
+	n1 		  =       startLevel 	 // 坐骑 星级
+	n2        =       exp            // 坐骑 经验
+	
+	s1        =       crtRefId       // 坐骑 编号
+	s2        =       name           // 坐骑 名字

@@ -1,0 +1,43 @@
+ CastleWar_Message_Begin = 3600;   // 攻城战消息起始
+    
+ C2G_CastleWar_JoinWar = CastleWar_Message_Begin + 1            // 请求参加攻城战
+    
+ G2C_CastleWar_JoinWar = CastleWar_Message_Begin + 2            // 参加攻城战返回
+    ret = byte  // 1 代表申请成功
+    
+ C2G_CastleWar_GetGift = CastleWar_Message_Begin + 3            // 领取王城礼包请求
+ 
+ C2G_CastleWar_Instance = CastleWar_Message_Begin + 4           // 进入王城副本请求
+  
+ C2G_CastleWar_FactionList = CastleWar_Message_Begin + 5        // 请求攻城公会列表
+
+ G2C_CastleWar_FactionList     = CastleWar_Message_Begin + 6    // 攻城公会列表返回
+    count = short
+    {
+        name = string
+    }
+    
+ G2C_CastleWar_Enter    = CastleWar_Message_Begin + 7          //进入皇宫
+    monsterOwner = string                                      //怪物的所属公会名字
+    
+ G2C_CastleWar_Exit     = CastleWar_Message_Begin + 8          //退出皇宫
+ 
+ G2C_CastleWar_MonsterRefresh = CastleWar_Message_Begin + 9    //怪物刷新
+    monsterOwner = string                                      //怪物的所属公会名字
+    
+ G2C_CastleWar_PreStart = CastleWar_Message_Begin + 10         //对所有参加公会的玩家预开始通知
+ 
+ G2C_CastleWar_End		= CastleWar_Message_Begin + 11         //攻城战结束通知（客户端移除状态使用）.....返回对象：参战公会的所有在线成员。
+ 
+ C2G_CastleWar_RequestTime = CastleWar_Message_Begin + 12    //请求攻城战时间相关
+ 
+ G2C_CastleWar_RequestTime = CastleWar_Message_Begin + 13    //攻城战相关时间返回
+ 	timeToStart =	long	//距离攻城战开始实际
+ 	timeToEnd 	=	long	//距离攻城战结束时间
+ 
+ G2C_CastleWar_Start = CastleWar_Message_Begin + 14    //对王宫场景内的所有玩家发消息。
+ 
+ C2G_CastleWar_OpenServer = CastleWar_Message_Begin + 15 //申请开服时间
+ G2C_CastleWar_OpenServer = CastleWar_Message_Begin + 16 //返回开服时间
+    time = int64 //开服时间
+ 

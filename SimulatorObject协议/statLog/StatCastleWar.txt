@@ -1,0 +1,15 @@
+StatCastleWar				攻城战Stat日志
+	StatType	= 			23
+	n1			=			optType;
+							1:Enter  进入攻城战
+							2:Leave  离开攻城战
+							3:Gift  领取王城礼包
+							4:Instance  进入王城副本
+							5:JoinWar  报名参加攻城战
+							6:Finish 公会战结束
+							
+	n2			=			officialId  官职（只有在optType == 6的时候才有这个字段）
+	
+	n3 			=			fightPower  战斗力
+							
+	s1			=			unionName  公会名字
